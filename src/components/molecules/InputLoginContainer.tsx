@@ -1,7 +1,7 @@
 import React from "react";
 
 import './inputContainer.css'
-// import { Input } from "../atoms/index"
+import { Input } from "../atoms/index"
 
 
 interface Props {
@@ -11,13 +11,14 @@ interface Props {
 }
 
 
-const InputContainer: React.FC<Props> = ({name, type, setState}) => {
+const InputLoginContainer: React.FC<Props> = ({name, type, setState}) => {
 
     return (
 
         <div className="container">
 
             <p className="title">{name}</p>
+            <Input type={type} setState={setState} className="input" />
 
         </div>
 
@@ -25,4 +26,4 @@ const InputContainer: React.FC<Props> = ({name, type, setState}) => {
 
 }
 
-export default InputContainer
+export default InputLoginContainer
