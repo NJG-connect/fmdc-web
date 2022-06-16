@@ -1,2 +1,4 @@
-import TestMolecule from './TestMolecule';
-export { TestMolecule };
+import Input from '../atoms/Input';
+
+
+export { Input };

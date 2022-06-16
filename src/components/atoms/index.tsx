@@ -1,2 +1,5 @@
-import TestAtom from './TestAtom';
-export { TestAtom };
+import Button from './Button';
+import Input from './Input'
+
+
+export { Button, Input };

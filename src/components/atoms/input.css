@@ -1,0 +1,37 @@
+.container {
+    position: relative;
+    margin-bottom: 1rem;
+    border: 1px solid #707070;
+    border-radius: 13px;
+    height: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 25px;
+}
+
+.title {
+    position: absolute;
+    left: 20px;
+    transform: translateY(-120%);
+    background-color: white;
+    padding: 0 5px;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 14px;
+    color: #707070;
+    font-family: normal normal 600 14px/19px Segoe UI;
+}
+
+.input {
+    border: none;
+    width: 100%;
+    height: 90%;
+    border-radius: 13px;
+    padding-left: 10px;
+}
+
+.input:focus{
+    outline-color: #C83130;
+}
