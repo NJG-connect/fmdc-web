@@ -8,7 +8,8 @@ main {
 .background {
     width: 60%;
     height: 100%;
-    background: radial-gradient(circle at 35% 50%, #C83130 70%, #791F1E 100%);
+    transform: rotate(180deg);
+    background-size: 120%;
 }
 
 .card-container {
@@ -62,74 +63,4 @@ main {
     .card-container {
         left: 50%;
     }
-}
-
-
-.button {
-    border-radius: 37px;
-    border: 4px solid #C83130;
-    padding: 15px 50px;
-    box-shadow: 0px 3px 6px #00000029;
-}
-
-.button:hover {
-    cursor: pointer;
-    background-color: #C83130;
-    transition: all .2s ease;
-}
-
-.button:active {
-    transform: scale(.98);
-}
-
-.button p {
-    font-size: 17px;
-    font-family: normal normal 600 17px/22px Segoe UI;
-    text-transform: uppercase;
-    font-weight: 500;
-    margin: 0;
-}
-
-.button:hover p {
-    color: white;
-    transition: all .2s ease;
-}
-
-
-.container {
-    position: relative;
-    margin-bottom: 1rem;
-    border: 1px solid #707070;
-    border-radius: 13px;
-    height: 40px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    margin-bottom: 25px;
-}
-
-.title {
-    position: absolute;
-    left: 20px;
-    transform: translateY(-120%);
-    background-color: white;
-    padding: 0 5px;
-    text-transform: uppercase;
-    text-align: center;
-    font-size: 14px;
-    color: #707070;
-    font-family: normal normal 600 14px/19px Segoe UI;
-}
-
-.input {
-    border: none;
-    width: 100%;
-    height: 90%;
-    border-radius: 13px;
-    padding-left: 10px;
-}
-
-.input:focus{
-    outline-color: #C83130;
 }

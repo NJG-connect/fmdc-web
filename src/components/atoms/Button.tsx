@@ -1,18 +1,20 @@
 import React from "react";
 
+import "./button.css"
 
 interface Props {
     className: string,
-    content: string
+    title: string,
+    onClick: () => void
 }
 
 
-const Button: React.FC<Props> = ({className, content}) => {
+const Button: React.FC<Props> = ({className, title, onClick}) => {
 
     return (
 
-        <div className={className} onClick={() => console.log("Onclick function") }>
-            <p>{ content }</p>
+        <div className={`${className} button`} onClick={onClick}>
+            <p>{ title }</p>
         </div>
 
     )
