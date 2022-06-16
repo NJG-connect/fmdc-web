@@ -1,0 +1,55 @@
+@import "../../assets/fonts/fonts.css";
+
+header {
+    position: relative;
+    width: 100%;
+    height: 6rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 5px solid #791F1E;
+}
+
+.exim-logo {
+    width: 196px;
+    height: 102px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    transform: translateY(25%);
+}
+
+.home-title {
+    font-size: 26px;
+    text-transform: uppercase;
+    font-family: normal normal 900 26px/36px Segoe UI;
+}
+
+.user-information {
+    display: flex;
+    transform: translateY(50%);
+}
+
+.icon {
+    border: 1px solid #791F1E;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    margin-right: 1rem;
+}
+
+.icon h1 {
+    font-family: "Stunders";
+    font-size: 53px;
+}
+
+.user-information p {
+    font-size: 18px;
+    font-weight: 600;
+    font-family: normal normal 600 18px/24px Segoe UI;
+}
+

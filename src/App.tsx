@@ -68,7 +68,7 @@ function App() {
       <UserContext.Provider value={{ userContext, setUserContext }}>
         <Routes>
           <Route path="/home" element={<HomeScreen />} />
-          <Route path="/login" element={<LoginScreen />} />
+          <Route path="/login" element={<HomeScreen />} /> {/* LoginScreen */}
           <Route path="/" element={<HomeScreen />} />
           <Route path="*" element={<Navigate to="/home" replace />} />
         </Routes>
