@@ -1,6 +1,5 @@
 import React from "react";
 
-import './inputContainer.css'
 import { Input } from "../atoms/index"
 
 

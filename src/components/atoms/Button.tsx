@@ -1,7 +1,5 @@
 import React from "react";
 
-import "./button.css"
-
 
 interface Props {
     className: string,
