@@ -1,7 +1,8 @@
 import React from 'react';
 
 import "./homeOrganism.css"
-import images from "../../assets/images/index"
+import "../../assets/fonts/index.css"
+import images from "../../assets/images/"
 
 export default function HomeOrganism() {
   
