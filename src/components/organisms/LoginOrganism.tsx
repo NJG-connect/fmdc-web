@@ -1,11 +1,10 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 
 import './loginOrganism.css';
 import images from '../../assets/images/';
 
 import { Button, Input } from '../atoms/';
-import { userInfo } from 'os';
 
 interface Props {
   onSubmit: (value: { login: string; mdp: string }) => Promise<void>;
@@ -18,12 +17,8 @@ export default function LoginOrganism({ onSubmit }: Props) {
     mdp: '',
   });
 
-  function disabled() {
-    if(infoUser.login == "" || infoUser.mdp == "") {
-      return true
-    }
-    return false
-  }
+  const infoUserIsEmpty = useMemo(() => !infoUser.login || !infoUser.mdp, [infoUser])
+
 
   return (
     <main>
@@ -48,7 +43,7 @@ export default function LoginOrganism({ onSubmit }: Props) {
             onChange={mdp => setInfoUser({ ...infoUser, mdp })}
           />
         </div>
-        <Button className="button" title="Se connecter" onClick={() => disabled() == false && onSubmit(infoUser)} disabled={disabled()} />
+        <Button className="button" title="Se connecter" onClick={() => onSubmit(infoUser)} disabled={infoUserIsEmpty} />
 
         <div
           className="njg-logo"

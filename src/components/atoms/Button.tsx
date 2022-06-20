@@ -11,7 +11,7 @@ interface Props {
 
 const Button: React.FC<Props> = ({ className = '', title, onClick, disabled = false }) => {
   return (
-    <div className={`${className} ${disabled && "disabled"}`} onClick={onClick}>
+    <div className={`${className} ${disabled && "disabled"}`} onClick={() => !disabled && onClick()}>
       <p>{title}</p>
     </div>
   );
