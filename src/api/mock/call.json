@@ -1,0 +1,17 @@
+{
+  "auth/login": {
+    "post": {
+      "succes": true,
+      "data": {
+        "idUtilisateur": 11,
+        "idGroupeUtilisateur": "GU_3",
+        "login": "julie",
+        "mail": null,
+        "prenom": "Julie",
+        "nom": "FERRERE",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFV0aWxpc2F0ZXVyIjoxMSwiaWRHcm91cGVVdGlsaXNhdGV1ciI6IkdVXzMiLCJsb2dpbiI6Imp1bGllIiwibWFpbCI6bnVsbCwicHJlbm9tIjoiSnVsaWUiLCJub20iOiJGRVJSRVJFIiwiaWF0IjoxNjU1MzA4MTA5LCJleHAiOjE2NTUzOTQ1MDl9.MXexD0Y6enxp8utnIUHngeQZDiu_dcjer97OTXHz2t8",
+        "exp": 1655394509
+      }
+    }
+  }
+}

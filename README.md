@@ -18,9 +18,10 @@ Ce projet est créer en React.Js pour l'installer / le lancer merci de suivre le
 
 à la racine créer et ajouter les clés suivantes :
 
-|         Key          |
-| :------------------: |
-| REACT_APP_JWT_SECRET |
+|            Key             |     Description     |
+| :------------------------: | :-----------------: |
+|    REACT_APP_JWT_SECRET    |                     |
+| REACT_APP_ENABLED_FAKE_API | Active les fake API |
 
 ### Commande à savoir
 
