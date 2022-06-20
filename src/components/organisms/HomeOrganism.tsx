@@ -5,7 +5,7 @@ import "./homeOrganism.css"
 import "../../assets/fonts/index.css"
 import images from "../../assets/images/"
 
-import ProfileContainer from '../molecules/ProfileContainer';
+import { ProfileContainer } from '../molecules/';
 
 export default function HomeOrganism() {
 

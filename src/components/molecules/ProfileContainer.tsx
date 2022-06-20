@@ -2,6 +2,7 @@ import React from 'react'
 
 import "./profileContainer.css"
 import "../../assets/fonts/index.css"
+import images from "../../assets/images/"
 
 import { Button } from '../atoms'
 
@@ -16,7 +17,10 @@ const ProfileContainer: React.FC<Props> = ({ show = false }) => {
         <div className="profile-container" style={show ? {display: "flex"} : {display: "none"}}>
             <h1>Rita Louise</h1>
             <p>Mon profil</p>
-            <Button className="button" title="Déconnexion" onClick={() => console.log("Click")} />
+            <div className="button-container">
+                <div className="img" style={{ backgroundImage: `url(${images.logout})` }}></div>
+                <Button className="button" title="Déconnexion" onClick={() => console.log("LogOut")} />
+            </div>
         </div>
 
     )

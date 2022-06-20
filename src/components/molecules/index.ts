@@ -1,4 +1,4 @@
-import Input from '../atoms/Input';
+import ProfileContainer from "./ProfileContainer";
 
 
-export { Input };
+export { ProfileContainer };

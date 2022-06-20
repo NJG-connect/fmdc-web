@@ -26,7 +26,7 @@
     margin-left: 10px;
 }
 
-.button {
+.button-container {
     position: relative;
     display: flex;
     align-items: center;
@@ -44,11 +44,12 @@
     margin-left: 10px;
 }
 
-.button:before {
-    content: '';
-    position: relative;  
+.img{
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    border: 1px solid red;
+    background-color: #C83130;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60%;
 }
