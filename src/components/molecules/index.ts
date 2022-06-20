@@ -1,4 +1,4 @@
-import InputLoginContainer from './InputLoginContainer';
+import Input from '../atoms/Input';
 
 
-export { InputLoginContainer };
+export { Input };

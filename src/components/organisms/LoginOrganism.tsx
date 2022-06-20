@@ -1,41 +1,52 @@
 import React from 'react';
 import { useState } from 'react';
 
-import "./loginOrganism.css"
-import images from "../../assets/images/index"
+import './loginOrganism.css';
+import images from '../../assets/images/';
 
-import { Button } from "../atoms/index"
-import { InputLoginContainer } from "../molecules/index"
-import { url } from 'inspector';
+import { Button, Input } from '../atoms/';
+import { convertCompilerOptionsFromJson } from 'typescript';
+import { userInfo } from 'os';
 
-export default function LoginOrganism() {
+interface Props {
+  onSubmit: (value: { login: string; mdp: string }) => Promise<void>;
+}
 
-  const [userName, setUserName] = useState<string>("")
-  const [password, setPassword] = useState<string>("")
-  
-  
+export default function LoginOrganism({ onSubmit }: Props) {
+  const [infoUser, setInfoUser] = useState<{ login: string; mdp: string }>({
+    login: '',
+    mdp: '',
+  });
+
   return (
     <main>
+      <div
+        className="background"
+        style={{ backgroundImage: `url(${images.background})` }}></div>
 
-    <div className="background"></div>
-
-    <div className="card-container">
-
-        <div className="exim-logo" style={{ backgroundImage: `url(${images.logoAndBrand})` }}></div>
+      <div className="card-container">
+        <div
+          className="exim-logo"
+          style={{ backgroundImage: `url(${images.logoAndBrand})` }}></div>
         <h1 className="main-title">Identification</h1>
         <div className="input-container">
-            <InputLoginContainer name="Nom D'utilisateur" type="text" setState={setUserName} />
-            <InputLoginContainer name="Mot de passe" type="password" setState={setPassword} />
+          <Input
+            name="Nom D'utilisateur"
+            type="text"
+            onChange={login => setInfoUser({ ...infoUser, login })}
+          />
+          <Input
+            name="Mot de passe"
+            type="password"
+            onChange={mdp => setInfoUser({ ...infoUser, mdp })}
+          />
         </div>
-        <Button content="Se connecter" className="button"/>
-        
-        <div className="njg-logo" style={{ backgroundImage: `url(${images.logoNjgConnect})` }}></div>
+        <Button title="Se connecter" onClick={() => onSubmit(infoUser)} />
 
-    </div>
-
-    
-
+        <div
+          className="njg-logo"
+          style={{ backgroundImage: `url(${images.logoNjgConnect})` }}></div>
+      </div>
     </main>
-)
-
+  );
 }

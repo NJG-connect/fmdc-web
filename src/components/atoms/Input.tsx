@@ -1,19 +1,33 @@
-import React from "react";
+import React from 'react';
+
+import './input.css';
 
 interface Props {
-    type: string,
-    className: string,
-    setState: React.Dispatch<React.SetStateAction<string>>
+  name: string;
+  type: 'text' | 'password';
+  onChange: (value: string) => void;
+  className?: string;
+  placeholder?: string;
 }
 
-const Input: React.FC<Props> = ({type, className, setState}) => {
+const Input: React.FC<Props> = ({
+  name,
+  type,
+  onChange,
+  className = '',
+  placeholder,
+}) => {
+  return (
+    <div className="container">
+      <p className="title">{name}</p>
+      <input
+        type={type}
+        onChange={e => onChange(e.target.value)}
+        className={`${className} input`}
+        placeholder={placeholder}
+      />
+    </div>
+  );
+};
 
-    return (
-
-        <input type={type} className={className} onChange={(e) => setState(e.target.value)} />
-
-    )
-
-}
-
-export default Input
+export default Input;
