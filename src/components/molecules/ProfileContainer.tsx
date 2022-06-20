@@ -5,14 +5,18 @@ import "../../assets/fonts/index.css"
 
 import { Button } from '../atoms'
 
-const ProfileContainer: React.FC = () => {
+interface Props {
+    show: boolean;
+}
+
+const ProfileContainer: React.FC<Props> = ({ show = false }) => {
 
     return (
         
-        <div>
+        <div className="profile-container" style={show ? {display: "flex"} : {display: "none"}}>
             <h1>Rita Louise</h1>
             <p>Mon profil</p>
-            <Button title="test" onClick={() => console.log("Click")} />
+            <Button className="button" title="Déconnexion" onClick={() => console.log("Click")} />
         </div>
 
     )
