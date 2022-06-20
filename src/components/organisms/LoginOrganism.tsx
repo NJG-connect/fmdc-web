@@ -21,9 +21,8 @@ export default function LoginOrganism({ onSubmit }: Props) {
   function disabled() {
     if(infoUser.login == "" || infoUser.mdp == "") {
       return true
-    } else {
-      return false
     }
+    return false
   }
 
   return (
