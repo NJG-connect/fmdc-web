@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './button.css';
-
 interface Props {
   className?: string;
   title: string;
@@ -10,7 +8,7 @@ interface Props {
 
 const Button: React.FC<Props> = ({ className = '', title, onClick }) => {
   return (
-    <div className={`${className} button`} onClick={onClick}>
+    <div className={`${className}`} onClick={onClick}>
       <p>{title}</p>
     </div>
   );

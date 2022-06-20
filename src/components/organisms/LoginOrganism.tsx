@@ -39,7 +39,7 @@ export default function LoginOrganism({ onSubmit }: Props) {
             onChange={mdp => setInfoUser({ ...infoUser, mdp })}
           />
         </div>
-        <Button title="Se connecter" onClick={() => onSubmit(infoUser)} />
+        <Button className="button" title="Se connecter" onClick={() => onSubmit(infoUser)} />
 
         <div
           className="njg-logo"
