@@ -5,16 +5,26 @@ import './loginOrganism.css';
 import images from '../../assets/images/';
 
 import { Button, Input } from '../atoms/';
+import { userInfo } from 'os';
 
 interface Props {
   onSubmit: (value: { login: string; mdp: string }) => Promise<void>;
 }
 
 export default function LoginOrganism({ onSubmit }: Props) {
+
   const [infoUser, setInfoUser] = useState<{ login: string; mdp: string }>({
     login: '',
     mdp: '',
   });
+
+  function disabled() {
+    if(infoUser.login == "" || infoUser.mdp == "") {
+      return true
+    } else {
+      return false
+    }
+  }
 
   return (
     <main>
@@ -39,7 +49,7 @@ export default function LoginOrganism({ onSubmit }: Props) {
             onChange={mdp => setInfoUser({ ...infoUser, mdp })}
           />
         </div>
-        <Button className="button" title="Se connecter" onClick={() => onSubmit(infoUser)} />
+        <Button className="button" title="Se connecter" onClick={() => disabled() == false && onSubmit(infoUser)} disabled={disabled()} />
 
         <div
           className="njg-logo"
