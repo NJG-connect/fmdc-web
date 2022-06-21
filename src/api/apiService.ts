@@ -2,10 +2,20 @@
 //   mode: 'cors',
 //   cache: 'default'
 
+import { BASE_URL } from './endpoint';
+import { fakeFetch } from './mock';
+
 type Method = 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE';
 
 class ApiService {
   async request(url: string, method: Method, body?: Object, params?: any) {
+    if (process.env.REACT_APP_ENABLED_FAKE_API === 'true') {
+      return await fakeFetch(url, method, body, {
+        ignoreBaseURL: BASE_URL,
+        delay: 2000,
+      });
+    }
+
     const response = await fetch(url, {
       method,
       headers: {
