@@ -5,7 +5,7 @@ import "./homeOrganism.css"
 import "../../assets/fonts/index.css"
 import images from "../../assets/images/"
 
-import { ProfileContainer } from '../molecules/';
+import { ProfileContainer, DayInterventions, Reschedule } from '../molecules/';
 
 export default function HomeOrganism() {
 
@@ -13,6 +13,7 @@ export default function HomeOrganism() {
   
   
   return (
+    <div className="home-organism-body">
 
       <header>
 
@@ -30,6 +31,21 @@ export default function HomeOrganism() {
 
       </header>
 
+      <main className="home-organism-main">
+        <h1>SELECT</h1>
+      </main>
+
+      <section className="home-organism-bottom">
+        <DayInterventions />
+        <Reschedule />
+        <DayInterventions />
+        <div className="icon">
+          <div className="img-container"><div style={{ backgroundImage: `url(${images.contact})` }}></div></div>
+          <div className="img-container"><div style={{ backgroundImage: `url(${images.addFolder})` }}></div></div>
+        </div>
+      </section>
+
+    </div>
   )
   
 
