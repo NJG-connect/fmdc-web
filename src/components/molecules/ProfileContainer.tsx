@@ -20,7 +20,7 @@ const ProfileContainer: React.FC<Props> = ({ show = false }) => {
             <p>Mon profil</p>
             <div className="button-container">
                 <div className="img" style={{ backgroundImage: `url(${images.logout})` }}></div>
-                <Button className="button" title="Déconnexion" onClick={() => console.log("LogOut")} />
+                <Button className="" title="Déconnexion" onClick={() => console.log("LogOut")} />
             </div>
         </div>
 
