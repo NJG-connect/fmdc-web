@@ -15,6 +15,7 @@ export default function HomeOrganism() {
   return (
     <div className="home-organism-body" onClick={() => isShow && setIsShow(false)}>
 
+    {/* Component Header (title / userInfo / onLogout) (-> Template) */}
       <header>
 
         <div className="exim-logo" style={{ backgroundImage: `url(${images.logoAndBrand})` }}></div>
@@ -40,6 +41,7 @@ export default function HomeOrganism() {
         <Reschedule />
         <DayInterventions />
         <div className="icon">
+          {/* Composant IconButton (img, Onclick?, disabled?) */}
           <div className="img-container"><div style={{ backgroundImage: `url(${images.contact})` }}></div></div>
           <div className="img-container"><div style={{ backgroundImage: `url(${images.addFolder})` }}></div></div>
         </div>

@@ -15,6 +15,7 @@ const Reschedule: React.FC = () => {
 
     const date = new Date()
 
+    // From organism 
     const fakeData: data[] = [
         {id: 2341, name: "Provins"},
         {id: 2951, name: "Rousseaux"},

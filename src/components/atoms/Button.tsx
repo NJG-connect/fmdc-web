@@ -6,7 +6,7 @@ interface Props {
   onClick: () => void;
 }
 
-const Button: React.FC<Props> = ({ className = '', title, onClick }) => {
+const Button: React.FC<Props> = ({ className, title, onClick }) => {
   return (
     <div className={`${className}`} onClick={onClick}>
       <p>{title}</p>

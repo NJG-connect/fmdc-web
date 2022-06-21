@@ -10,6 +10,7 @@ interface Props {
     show: boolean;
 }
 
+// Modal + Props (Name + function)
 const ProfileContainer: React.FC<Props> = ({ show = false }) => {
 
     return (
