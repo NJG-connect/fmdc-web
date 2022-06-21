@@ -13,7 +13,7 @@ export default function HomeOrganism() {
   
   
   return (
-    <div className="home-organism-body">
+    <div className="home-organism-body" onClick={() => isShow && setIsShow(false)}>
 
       <header>
 
