@@ -6,6 +6,8 @@ import "../../assets/fonts/index.css"
 import images from "../../assets/images/"
 
 import { ModalContainer, DayInterventions, Reschedule } from '../molecules/';
+import { Header } from '../templates/'
+
 
 export default function HomeOrganism() {
 
@@ -15,22 +17,8 @@ export default function HomeOrganism() {
   return (
     <div className="home-organism-body" onClick={() => isShow && setIsShow(false)}>
 
-    {/* Component Header (title / userInfo / onLogout) (-> Template) */}
-      <header>
-
-        <div className="exim-logo" style={{ backgroundImage: `url(${images.logoAndBrand})` }}></div>
-
-        <h1 className="home-title">Soft Enrobé</h1>
-
-        <div className="user-information">
-          <ModalContainer show={isShow} name="Rita Louise" onClick={() => console.log("Logout")} />
-          <div className="icon" onClick={() => setIsShow(!isShow)}>
-            <h1>RL</h1>
-          </div>
-          <p>Assistant(e)</p>
-        </div>
-
-      </header>
+  
+    <Header title="Soft Enrobé" isShow={isShow} setIsShow={setIsShow} />
 
       <main className="home-organism-main">
         <h1>SELECT</h1>
@@ -46,6 +34,7 @@ export default function HomeOrganism() {
           <div className="img-container"><div style={{ backgroundImage: `url(${images.addFolder})` }}></div></div>
         </div>
       </section>
+
 
     </div>
   )
