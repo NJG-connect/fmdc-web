@@ -8,19 +8,21 @@ import { Button } from '../atoms'
 
 interface Props {
     show: boolean;
+    name: string;
+    onClick?: () => void;
 }
 
 // Modal + Props (Name + function)
-const ProfileContainer: React.FC<Props> = ({ show = false }) => {
+const ModalContainer: React.FC<Props> = ({ show = false, name, onClick = () => console.log(name)}) => {
 
     return (
         
-        <div className="profile-container" style={show ? {display: "flex"} : {display: "none"}}>
-            <h1>Rita Louise</h1>
+        <div className="modal-container" style={show ? {display: "flex"} : {display: "none"}}>
+            <h1>{name}</h1>
             <p>Mon profil</p>
             <div className="button-container">
                 <div className="img" style={{ backgroundImage: `url(${images.logout})` }}></div>
-                <Button className="" title="Déconnexion" onClick={() => console.log("LogOut")} />
+                <Button className="button" title="Déconnexion" onClick={onClick} />
             </div>
         </div>
 
@@ -28,4 +30,4 @@ const ProfileContainer: React.FC<Props> = ({ show = false }) => {
 
 }
 
-export default ProfileContainer
+export default ModalContainer

@@ -5,7 +5,7 @@ import "./homeOrganism.css"
 import "../../assets/fonts/index.css"
 import images from "../../assets/images/"
 
-import { ProfileContainer, DayInterventions, Reschedule } from '../molecules/';
+import { ModalContainer, DayInterventions, Reschedule } from '../molecules/';
 
 export default function HomeOrganism() {
 
@@ -23,7 +23,7 @@ export default function HomeOrganism() {
         <h1 className="home-title">Soft Enrobé</h1>
 
         <div className="user-information">
-          <ProfileContainer show={isShow} />
+          <ModalContainer show={isShow} name="Rita Louise" onClick={() => console.log("Logout")} />
           <div className="icon" onClick={() => setIsShow(!isShow)}>
             <h1>RL</h1>
           </div>
