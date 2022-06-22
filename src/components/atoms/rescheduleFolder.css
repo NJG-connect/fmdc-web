@@ -1,0 +1,28 @@
+.rescheduleFolder-container {
+    width: 90%;
+    border: 1px solid #707070;
+    border-radius: 21px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px;
+    margin-bottom: .5rem;
+}
+
+.rescheduleFolder-container:hover {
+    cursor: pointer;
+}
+
+.rescheduleFolder-container p {
+    font-size: 16px;
+    font-family: normal normal normal 16px/21px Segoe UI;
+    color: #000000A8;
+    margin: 0;
+}
+
+.rescheduleFolder-container div {
+    width: 25px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+}

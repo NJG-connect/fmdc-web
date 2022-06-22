@@ -1,0 +1,13 @@
+svg {
+    position: absolute;
+    width: 112px;
+    height: 112px;
+    transform: rotate(-90deg);
+}
+
+svg circle {
+    fill: none;
+    stroke-width: 6px;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+}

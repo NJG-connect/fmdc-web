@@ -2,34 +2,30 @@ import React from 'react';
 import { useState, useMemo } from 'react';
 
 import './loginOrganism.css';
-import images from '../../assets/images/';
 
-import { Button, Input } from '../atoms/';
+import { Button, Input, Img } from '../atoms/';
 
 interface Props {
   onSubmit: (value: { login: string; mdp: string }) => Promise<void>;
 }
 
 export default function LoginOrganism({ onSubmit }: Props) {
-
   const [infoUser, setInfoUser] = useState<{ login: string; mdp: string }>({
     login: '',
     mdp: '',
   });
 
-  const infoUserIsEmpty = useMemo(() => !infoUser.login || !infoUser.mdp, [infoUser])
-
+  const infoUserIsEmpty = useMemo(
+    () => !infoUser.login || !infoUser.mdp,
+    [infoUser],
+  );
 
   return (
     <main>
-      <div
-        className="background"
-        style={{ backgroundImage: `url(${images.background})` }}></div>
+      <Img className="background" img="background" />
 
       <div className="card-container">
-        <div
-          className="exim-logo"
-          style={{ backgroundImage: `url(${images.logoAndBrand})` }}></div>
+        <Img className="exim-logo" img="logoAndBrand" />
         <h1 className="main-title">Identification</h1>
         <div className="input-container">
           <Input
@@ -43,11 +39,14 @@ export default function LoginOrganism({ onSubmit }: Props) {
             onChange={mdp => setInfoUser({ ...infoUser, mdp })}
           />
         </div>
-        <Button className="button" title="Se connecter" onClick={() => onSubmit(infoUser)} disabled={infoUserIsEmpty} />
+        <Button
+          className="button"
+          title="Se connecter"
+          onClick={() => onSubmit(infoUser)}
+          disabled={infoUserIsEmpty}
+        />
 
-        <div
-          className="njg-logo"
-          style={{ backgroundImage: `url(${images.logoNjgConnect})` }}></div>
+        <Img className="njg-logo" img="logoNjgConnect" />
       </div>
     </main>
   );

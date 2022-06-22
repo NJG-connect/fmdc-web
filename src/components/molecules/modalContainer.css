@@ -1,0 +1,55 @@
+.modal-container {
+    position: absolute;
+    width: 220px;
+    height: 150px;
+    border: 1px solid #791F1E;
+    border-radius: 22px;
+    transform: translateX(calc(-100% - 1rem));
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.modal-container h1 {
+    font-size: 53px;
+    font-family: "Stunders";
+    text-align: center;
+    margin: 0;
+}
+
+.modal-container p {
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: normal normal bold 16px/21px Segoe UI;
+    margin: 0;
+    margin-left: 10px;
+}
+
+.button-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.modal-container .button:hover {
+    cursor: pointer;
+}
+
+.modal-container .button p {
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: normal normal bold 16px/21px Segoe UI;
+    margin-left: 10px;
+}
+
+.button-container .img{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #C83130;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60%;
+}

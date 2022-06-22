@@ -1,0 +1,25 @@
+.intervention-container .top .circle-container {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border: 11px solid #70707021;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.intervention-container .top .circle-container p {
+    font-size: 23px;
+    font-weight: bold;
+}
+
+
+.intervention-container .bottom h3 {
+  margin: 0;
+  font-family: normal normal bold 24px/32px Segoe UI;
+  font-size: 13px;
+  color: #0000003b;
+}
