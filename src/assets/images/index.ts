@@ -1,4 +1,15 @@
-const images = {
+export type ImageType =
+  | 'logoAndBrand'
+  | 'logoNjgConnect'
+  | 'background'
+  | 'road'
+  | 'calendar'
+  | 'contact'
+  | 'addFolder'
+  | 'logout'
+  | 'folder';
+
+const images= {
   logoAndBrand: require('./logoAndBrand.png'),
   logoNjgConnect: require('./logoNjgConnect.png'),
   background: require('./background.png'),

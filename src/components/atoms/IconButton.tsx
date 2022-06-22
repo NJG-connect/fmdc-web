@@ -1,18 +1,10 @@
 import React from 'react';
+import { ImageType } from '../../assets/images';
 
 import { Img } from './';
 
 interface Props {
-  img:
-    | 'logoAndBrand'
-    | 'logoNjgConnect'
-    | 'background'
-    | 'road'
-    | 'calendar'
-    | 'contact'
-    | 'addFolder'
-    | 'logout'
-    | 'folder';
+  img: ImageType;
   className: string;
   onClick?: () => void;
   disabled?: boolean;

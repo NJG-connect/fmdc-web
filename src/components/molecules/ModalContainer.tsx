@@ -1,8 +1,8 @@
 import React from 'react'
 
-import "./profileContainer.css"
+import "./modalContainer.css"
 import "../../assets/fonts/index.css"
-import images from "../../assets/images/"
+import images from "../../assets/images"
 
 import { Button, Img } from '../atoms'
 
@@ -13,7 +13,7 @@ interface Props {
 }
 
 
-const ModalContainer: React.FC<Props> = ({ show = false, name, onClick = () => console.log(name)}) => {
+const ModalContainer: React.FC<Props> = ({ show = false, name, onClick = () => {} }) => {
 
     return (
         

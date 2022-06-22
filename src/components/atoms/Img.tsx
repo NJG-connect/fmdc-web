@@ -1,18 +1,11 @@
 import React from 'react';
 
-import images from '../../assets/images/';
+import images, { ImageType } from '../../assets/images/';
+
+
 
 interface Props {
-  img:
-    | 'logoAndBrand'
-    | 'logoNjgConnect'
-    | 'background'
-    | 'road'
-    | 'calendar'
-    | 'contact'
-    | 'addFolder'
-    | 'logout'
-    | 'folder';
+  img: ImageType;
   className?: string;
 }
 
