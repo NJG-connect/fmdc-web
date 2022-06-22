@@ -3,8 +3,8 @@ import { useState } from 'react'
 
 import "./homeOrganism.css"
 import "../../assets/fonts/index.css"
-import images from "../../assets/images/"
 
+import { IconButton } from '../atoms';
 import { DayInterventions, Reschedule } from '../molecules/';
 import { Header } from '../templates/'
 
@@ -29,9 +29,8 @@ export default function HomeOrganism() {
         <Reschedule />
         <DayInterventions />
         <div className="icon">
-          {/* Composant IconButton (img, Onclick?, disabled?) */}
-          <div className="img-container"><div style={{ backgroundImage: `url(${images.contact})` }}></div></div>
-          <div className="img-container"><div style={{ backgroundImage: `url(${images.addFolder})` }}></div></div>
+          <IconButton img="contact" className="img-container" />
+          <IconButton img="addFolder" className="img-container" />
         </div>
       </section>
 
