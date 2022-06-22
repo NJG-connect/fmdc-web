@@ -9,7 +9,7 @@ export type ImageType =
   | 'logout'
   | 'folder';
 
-const images= {
+const images: { [key in ImageType]: any } = {
   logoAndBrand: require('./logoAndBrand.png'),
   logoNjgConnect: require('./logoNjgConnect.png'),
   background: require('./background.png'),
