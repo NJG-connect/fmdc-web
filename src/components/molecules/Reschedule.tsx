@@ -2,7 +2,6 @@ import React from "react";
 
 import "./reschedule.css"
 import "./intervention.css"
-import images from "../../assets/images/"
 
 import { RescheduleFolder, Img } from "../atoms";
 
