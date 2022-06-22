@@ -16,21 +16,6 @@
     font-weight: bold;
 }
 
-svg {
-    position: absolute;
-    width: 112px;
-    height: 112px;
-    transform: rotate(-90deg);
-}
-
-.intervention-container .top .circle-container svg circle {
-    fill: none;
-    stroke: #C83130;
-    stroke-width: 6px;
-    stroke-dashoffset: 0;
-    stroke-linecap: round;
-}
-
 
 .intervention-container .bottom h3 {
   margin: 0;

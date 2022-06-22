@@ -12,7 +12,7 @@ interface Props {
     onClick?: () => void;
 }
 
-// Modal + Props (Name + function)
+
 const ModalContainer: React.FC<Props> = ({ show = false, name, onClick = () => console.log(name)}) => {
 
     return (

@@ -4,6 +4,8 @@ import "./dayIntervention.css"
 import "./intervention.css"
 import images from "../../assets/images/"
 
+import { CircleProgressBar } from "../atoms";
+
 // Date, intervention du jour, maxIntervention
 const DayInterventions: React.FC = () => {
 
@@ -13,10 +15,7 @@ const DayInterventions: React.FC = () => {
             <div className="top">
                 <div className="img" style={{ backgroundImage: `url(${images.road})` }}></div>
                 <div className="circle-container">
-                    {/* Component ProgressCircleBar (%, color=red) */}
-                    <svg>
-                      <circle cx="56" cy="56" r="50" style={{ strokeDasharray: `${312 - (312*((100-32)/100))} ${312 - (312*(32/100))}` }}></circle>
-                    </svg>
+                    <CircleProgressBar pourcentage={32} />
                     <p>32%</p>
                 </div>
             </div>
