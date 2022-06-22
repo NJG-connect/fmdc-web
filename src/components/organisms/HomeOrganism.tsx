@@ -8,8 +8,17 @@ import { IconButton } from '../atoms';
 import { DayInterventions, Reschedule } from '../molecules/';
 import { Header } from '../templates/'
 
+interface data {
+  id: number;
+  name: string;
+}
 
-export default function HomeOrganism() {
+interface Props {
+  data: data[];
+}
+
+
+export default function HomeOrganism({data}: Props) {
 
   const [isShow, setIsShow] = useState<boolean>(false)
   
@@ -26,7 +35,7 @@ export default function HomeOrganism() {
 
       <section className="home-organism-bottom">
         <DayInterventions />
-        <Reschedule />
+        <Reschedule data={data} />
         <DayInterventions />
         <div className="icon">
           <IconButton img="contact" className="img-container" />

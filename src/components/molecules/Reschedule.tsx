@@ -11,17 +11,11 @@ interface data {
     name: string;
 }
 
-const Reschedule: React.FC = () => {
+interface Props {
+    data: data[];
+}
 
-    const date = new Date()
-
-    // From organism 
-    const fakeData: data[] = [
-        {id: 2341, name: "Provins"},
-        {id: 2951, name: "Rousseaux"},
-        {id: 9462, name: "DI Environement"},
-        {id: 5820, name: "Cocherot"},
-    ]
+const Reschedule: React.FC<Props> = ({data}) => {
 
     return (
 
@@ -29,7 +23,7 @@ const Reschedule: React.FC = () => {
             <div className="top">
                 <Img className="img" img="calendar" />
                 <div className="reschedule">
-                    {fakeData.map(dossier => (<RescheduleFolder id={dossier.id} name={dossier.name} key={dossier.id} />))}
+                    {data.map(dossier => (<RescheduleFolder id={dossier.id} name={dossier.name} key={dossier.id} />))}
                 </div>
             </div>
             <div className="bottom">
