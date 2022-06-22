@@ -1,24 +1,25 @@
-import React from "react";
+import React from 'react';
 
-import images from "../../assets/images/"
-
-import { ModalContainer } from "../molecules/"
-import { Img } from "../atoms/"
+import { ModalContainer } from '../molecules/';
+import { Img } from '../atoms/';
 
 interface Props {
-    title: string;
-    userInfo?: Object;
-    onLogout?: () => void;
-    isShow: boolean;
-    setIsShow: React.Dispatch<React.SetStateAction<boolean>>
+  title: string;
+  userInfo?: Object;
+  onLogout?: () => void;
+  isShow: boolean;
+  setIsShow: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Header: React.FC<Props> = ({title, userInfo, onLogout, isShow, setIsShow}) => {
-
-    return (
-
-      <header>
-
+const Header: React.FC<Props> = ({
+  title,
+  userInfo,
+  onLogout,
+  isShow,
+  setIsShow,
+}) => {
+  return (
+    <header>
       <Img className="exim-logo" img="logoAndBrand" />
 
       <h1 className="home-title">{title}</h1>
@@ -30,11 +31,8 @@ const Header: React.FC<Props> = ({title, userInfo, onLogout, isShow, setIsShow})
         </div>
         <p>Assistant(e)</p>
       </div>
-
     </header>
+  );
+};
 
-    )
-
-}
-
-export default Header
+export default Header;
