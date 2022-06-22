@@ -132,5 +132,16 @@
         }
       ]
     }
+  },
+  "dossiers/dossiersForToday": {
+    "get": {
+      "succes": true,
+      "data": {
+        "totalIntervention": 5,
+        "completeIntervention": 5,
+        "pourcentFinished": 100,
+        "date": "22/6/2022"
+      }
+    }
   }
 }
