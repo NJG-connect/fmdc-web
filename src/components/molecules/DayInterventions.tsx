@@ -2,9 +2,8 @@ import React from 'react';
 
 import './dayIntervention.css';
 import './intervention.css';
-import images from '../../assets/images/';
 
-import { CircleProgressBar } from '../atoms';
+import { CircleProgressBar, Img } from '../atoms';
 
 interface Props {
   date?: Date;
@@ -22,9 +21,7 @@ const DayInterventions: React.FC<Props> = ({
   return (
     <div className="intervention-container">
       <div className="top">
-        <div
-          className="img"
-          style={{ backgroundImage: `url(${images.road})` }}></div>
+        <Img className="img" img="road" />
         <div className="circle-container">
           <CircleProgressBar pourcentage={pourcent} />
           <p>{pourcent}%</p>

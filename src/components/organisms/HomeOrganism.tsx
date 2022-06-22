@@ -5,7 +5,7 @@ import "./homeOrganism.css"
 import "../../assets/fonts/index.css"
 import images from "../../assets/images/"
 
-import { ModalContainer, DayInterventions, Reschedule } from '../molecules/';
+import { DayInterventions, Reschedule } from '../molecules/';
 import { Header } from '../templates/'
 
 

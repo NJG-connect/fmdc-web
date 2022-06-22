@@ -4,7 +4,7 @@ import "./reschedule.css"
 import "./intervention.css"
 import images from "../../assets/images/"
 
-import { RescheduleFolder } from "../atoms";
+import { RescheduleFolder, Img } from "../atoms";
 
 interface data {
     id: number;
@@ -27,7 +27,7 @@ const Reschedule: React.FC = () => {
 
         <div className="intervention-container">
             <div className="top">
-                <div className="img" style={{ backgroundImage: `url(${images.calendar})` }}></div>
+                <Img className="img" img="calendar" />
                 <div className="reschedule">
                     {fakeData.map(dossier => (<RescheduleFolder id={dossier.id} name={dossier.name} key={dossier.id} />))}
                 </div>

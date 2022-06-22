@@ -1,9 +1,9 @@
 import React from "react";
-import { useState } from "react"
 
 import images from "../../assets/images/"
 
 import { ModalContainer } from "../molecules/"
+import { Img } from "../atoms/"
 
 interface Props {
     title: string;
@@ -19,7 +19,7 @@ const Header: React.FC<Props> = ({title, userInfo, onLogout, isShow, setIsShow})
 
       <header>
 
-      <div className="exim-logo" style={{ backgroundImage: `url(${images.logoAndBrand})` }}></div>
+      <Img className="exim-logo" img="logoAndBrand" />
 
       <h1 className="home-title">{title}</h1>
 

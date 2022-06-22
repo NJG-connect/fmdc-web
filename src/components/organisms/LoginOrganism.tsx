@@ -2,9 +2,8 @@ import React from 'react';
 import { useState, useMemo } from 'react';
 
 import './loginOrganism.css';
-import images from '../../assets/images/';
 
-import { Button, Input } from '../atoms/';
+import { Button, Input, Img } from '../atoms/';
 
 interface Props {
   onSubmit: (value: { login: string; mdp: string }) => Promise<void>;
@@ -23,14 +22,10 @@ export default function LoginOrganism({ onSubmit }: Props) {
 
   return (
     <main>
-      <div
-        className="background"
-        style={{ backgroundImage: `url(${images.background})` }}></div>
+      <Img className="background" img="background" />
 
       <div className="card-container">
-        <div
-          className="exim-logo"
-          style={{ backgroundImage: `url(${images.logoAndBrand})` }}></div>
+        <Img className="exim-logo" img="logoAndBrand" />
         <h1 className="main-title">Identification</h1>
         <div className="input-container">
           <Input
@@ -51,9 +46,7 @@ export default function LoginOrganism({ onSubmit }: Props) {
           disabled={infoUserIsEmpty}
         />
 
-        <div
-          className="njg-logo"
-          style={{ backgroundImage: `url(${images.logoNjgConnect})` }}></div>
+        <Img className="njg-logo" img="logoNjgConnect" />
       </div>
     </main>
   );

@@ -4,7 +4,7 @@ import "./profileContainer.css"
 import "../../assets/fonts/index.css"
 import images from "../../assets/images/"
 
-import { Button } from '../atoms'
+import { Button, Img } from '../atoms'
 
 interface Props {
     show: boolean;
@@ -21,7 +21,7 @@ const ModalContainer: React.FC<Props> = ({ show = false, name, onClick = () => c
             <h1>{name}</h1>
             <p>Mon profil</p>
             <div className="button-container">
-                <div className="img" style={{ backgroundImage: `url(${images.logout})` }}></div>
+                <Img img="logout" className="img" />
                 <Button className="button" title="Déconnexion" onClick={onClick} />
             </div>
         </div>
