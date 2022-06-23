@@ -15,30 +15,30 @@ function App() {
   let navigate = useNavigate();
 
   // check have valid token however redicted to login
-  // useEffect(() => {
-  //   const infoLocalStorage = localStorage.getItem(
-  //     process.env.REACT_APP_JWT_SECRET!,
-  //   );
+  useEffect(() => {
+    const infoLocalStorage = localStorage.getItem(
+      process.env.REACT_APP_JWT_SECRET!,
+    );
 
-  //   // wait until context get localStorage info
-  //   if (
-  //     JSON.stringify(userContext) === infoLocalStorage ||
-  //     infoLocalStorage === null
-  //   ) {
-  //     // check if userContext and info for token exist
-  //     if (userContext && userContext.token && userContext.exp) {
-  //       // check token Expiration
-  //       const tokenExpiration = new Date(Number(userContext.exp) * 1000);
-  //       const dateNow = new Date();
-  //       const tokenIsValid = tokenExpiration < dateNow ? false : true;
+    // wait until context get localStorage info
+    if (
+      JSON.stringify(userContext) === infoLocalStorage ||
+      infoLocalStorage === null
+    ) {
+      // check if userContext and info for token exist
+      if (userContext && userContext.token && userContext.exp) {
+        // check token Expiration
+        const tokenExpiration = new Date(Number(userContext.exp) * 1000);
+        const dateNow = new Date();
+        const tokenIsValid = tokenExpiration < dateNow ? false : true;
 
-  //       if (tokenIsValid) {
-  //         return;
-  //       }
-  //     }
-  //     return navigate('/login');
-  //   }
-  // }, [navigate, userContext]);
+        if (tokenIsValid) {
+          return;
+        }
+      }
+      return navigate('/login');
+    }
+  }, [navigate, userContext]);
 
   // when update UserContext we push into localstorage
   useEffect(() => {
