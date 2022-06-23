@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, Navigate, useLocation } from 'react-router-dom';
 
 import { HomeScreen, LoginScreen } from './components/screens';
 import { UserContext } from './contexts/UserContext';
@@ -7,6 +7,8 @@ import { JwtUserType } from './types/UserContext';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+import './app.css';
 
 function App() {
   const [userContext, setUserContext] = useState<JwtUserType>();
@@ -52,15 +54,38 @@ function App() {
     }
   }, [userContext]);
 
+
+  const location = useLocation();
+  const [displayLocation, setDisplayLocation] = useState(location);
+  const [transitionStage, setTransistionStage] = useState("fadeIn");
+
+  useEffect(() => {
+    if (location !== displayLocation) setTransistionStage("fadeOut");
+  }, [location]);
+
   return (
     <>
       <UserContext.Provider value={{ userContext, setUserContext }}>
-        <Routes>
+
+        <div
+          className={`${transitionStage}`}
+          onAnimationEnd={() => {
+            if (transitionStage === "fadeOut") {
+              setTransistionStage("fadeIn");
+              setDisplayLocation(location);
+            }
+          }}
+        >
+
+        <Routes location={displayLocation}>
           <Route path="/home" element={<HomeScreen />} />
           <Route path="/login" element={<LoginScreen />} />
           <Route path="/" element={<HomeScreen />} />
           <Route path="*" element={<Navigate to="/home" replace />} />
         </Routes>
+
+        </div>
+
         <ToastContainer />
       </UserContext.Provider>
     </>
