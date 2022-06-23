@@ -2,6 +2,7 @@ import React from 'react';
 import { ImageType } from '../../assets/images';
 
 import { Img } from './';
+import images from "../../assets/images/"
 
 interface Props {
   img: ImageType;
@@ -16,7 +17,7 @@ const IconButton: React.FC<Props> = ({
   className = '',
   onClick,
   disabled = false,
-  imgClassName = ''
+  imgClassName = '',
 }) => {
   return (
     <div className={`${className} ${disabled && "disabled"}`} onClick={() => !disabled && onClick?.() }>

@@ -1,4 +1,5 @@
 import eye from './eye.svg';
+import closedEye from './eye-2.svg';
 
 export type ImageType =
   | 'logoAndBrand'
@@ -10,7 +11,8 @@ export type ImageType =
   | 'addFolder'
   | 'logout'
   | 'folder'
-  | 'eye';
+  | 'eye'
+  | "closedEye"
 
 const images: { [key in ImageType]: any } = {
   logoAndBrand: require('./logoAndBrand.png'),
@@ -23,6 +25,7 @@ const images: { [key in ImageType]: any } = {
   addFolder: require('./add-folder.png'),
   logout: require('./logout.png'),
   eye,
+  closedEye
 };
 
 export default images;
