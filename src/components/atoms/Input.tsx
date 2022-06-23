@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import './input.css';
 import { IconButton } from './';
-import eye from '../../assets/images/eye.svg';
 
 interface Props {
   name: string;
@@ -32,7 +31,7 @@ const Input: React.FC<Props> = ({
       />
       {type == 'password' && (
         <IconButton
-          img="folder"
+          img="eye"
           className="icon"
           imgClassName="img"
           onClick={() =>
@@ -42,7 +41,6 @@ const Input: React.FC<Props> = ({
           }
         />
       )}
-      {/* <div style={{ backgroundImage: `url(` + eye + `)` }}></div> */}
     </div>
   );
 };
