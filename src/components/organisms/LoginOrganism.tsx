@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react';
 import './loginOrganism.css';
 
 import { Button, Input, Img } from '../atoms/';
+import { useNavigate } from 'react-router';
 
 interface Props {
   onSubmit: (value: { login: string; mdp: string }) => Promise<void>;
@@ -19,6 +20,8 @@ export default function LoginOrganism({ onSubmit }: Props) {
     () => !infoUser.login || !infoUser.mdp,
     [infoUser],
   );
+
+  const navigate = useNavigate()
 
   return (
     <main>
@@ -42,7 +45,7 @@ export default function LoginOrganism({ onSubmit }: Props) {
         <Button
           className="button"
           title="Se connecter"
-          onClick={() => onSubmit(infoUser)}
+          onClick={() => navigate("/home")} //onSubmit(infoUser)
           disabled={infoUserIsEmpty}
         />
 
