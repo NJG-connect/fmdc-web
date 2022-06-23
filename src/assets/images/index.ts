@@ -7,7 +7,8 @@ export type ImageType =
   | 'contact'
   | 'addFolder'
   | 'logout'
-  | 'folder';
+  | 'folder'
+  | 'eye';
 
 const images: { [key in ImageType]: any } = {
   logoAndBrand: require('./logoAndBrand.png'),
@@ -19,6 +20,7 @@ const images: { [key in ImageType]: any } = {
   folder: require('./folder.png'),
   addFolder: require('./add-folder.png'),
   logout: require('./logout.png'),
+  eye: require('./eye.svg'),
 };
 
 export default images;

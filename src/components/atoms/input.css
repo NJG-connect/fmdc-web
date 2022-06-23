@@ -32,6 +32,26 @@
     padding-left: 10px;
 }
 
+
 .input:focus{
     outline-color: #C83130;
+}
+
+
+.container .icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+}
+
+.container .img {
+    width: 100%;
+    height: 100%;
+}
+
+.container .icon:hover {
+    cursor: pointer;
 }

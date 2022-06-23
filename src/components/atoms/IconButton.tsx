@@ -5,9 +5,10 @@ import { Img } from './';
 
 interface Props {
   img: ImageType;
-  className: string;
+  className?: string;
   onClick?: () => void;
   disabled?: boolean;
+  imgClassName?: string;
 }
 
 const IconButton: React.FC<Props> = ({
@@ -15,10 +16,11 @@ const IconButton: React.FC<Props> = ({
   className = '',
   onClick,
   disabled = false,
+  imgClassName = ''
 }) => {
   return (
     <div className={`${className} ${disabled && "disabled"}`} onClick={() => !disabled && onClick?.() }>
-      <Img img={img} />
+      <Img img={img} className={imgClassName} />
     </div>
   );
 };
