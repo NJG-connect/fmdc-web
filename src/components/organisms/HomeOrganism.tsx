@@ -1,12 +1,12 @@
 import React from 'react';
-import { useState } from 'react'
+import { useState } from 'react';
 
-import "./homeOrganism.css"
-import "../../assets/fonts/index.css"
+import './homeOrganism.css';
+import '../../assets/fonts/index.css';
 
 import { IconButton } from '../atoms';
-import { DayInterventions, Reschedule } from '../molecules/';
-import { Header } from '../templates/'
+import { DayInterventions, Reschedule, Select } from '../molecules/';
+import { Header } from '../templates/';
 
 interface data {
   id: number;
@@ -17,20 +17,17 @@ interface Props {
   data: data[];
 }
 
+export default function HomeOrganism({ data }: Props) {
+  const [isShow, setIsShow] = useState<boolean>(false);
 
-export default function HomeOrganism({data}: Props) {
-
-  const [isShow, setIsShow] = useState<boolean>(false)
-  
-  
   return (
-    <div className="home-organism-body" onClick={() => isShow && setIsShow(false)}>
-
-  
-    <Header title="Soft Enrobé" isShow={isShow} setIsShow={setIsShow} />
+    <div
+      className="home-organism-body"
+      onClick={() => isShow && setIsShow(false)}>
+      <Header title="Soft Enrobé" isShow={isShow} setIsShow={setIsShow} />
 
       <main className="home-organism-main">
-        <h1>SELECT</h1>
+        <Select data={data} onSelect={(id) => console.log(id)} />
       </main>
 
       <section className="home-organism-bottom">
@@ -42,10 +39,6 @@ export default function HomeOrganism({data}: Props) {
           <IconButton img="addFolder" className="img-container" />
         </div>
       </section>
-
-
     </div>
-  )
-  
-
+  );
 }

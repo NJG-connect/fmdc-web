@@ -62,6 +62,7 @@ function App() {
   useEffect(() => {
     if (location !== displayLocation) setTransistionStage("fadeOut");
   }, [location]);
+  
 
   return (
     <>
@@ -79,7 +80,7 @@ function App() {
 
         <Routes location={displayLocation}>
           <Route path="/home" element={<HomeScreen />} />
-          <Route path="/login" element={<LoginScreen />} />
+          <Route path="/login" element={<HomeScreen />} />
           <Route path="/" element={<HomeScreen />} />
           <Route path="*" element={<Navigate to="/home" replace />} />
         </Routes>

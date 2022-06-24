@@ -1,0 +1,87 @@
+.select-global-container .select-container {
+    width: 800px;
+    height: 80px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solide #C831302E;
+    border-radius: 38px;
+    box-shadow: 8px 12px 6px #C8313012;
+}
+
+.select-container .content {
+    width: 90%;
+    height: 65%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+}
+
+.select-container .content input {
+    height: 90%;
+    width: 95%;
+    border: none;
+    font-size: 21px;
+    font-family: normal normal bold 21px/28px Segoe UI;
+}
+
+.select-container .content input::placeholder {
+    color: #00000047;
+    font-weight: bold;
+
+}
+
+.select-container .content input:focus {
+    outline: none;
+}
+
+.select-container .content .button {
+    width: 23px;
+    height: 23px;
+}
+
+.select-container .content .img {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: 100%;
+}
+
+.select-global-container .result-container {
+    position: absolute;
+    background-color: white;
+    width: 800px;
+    box-shadow: 8px 12px 6px #C8313012;
+    border-bottom-left-radius: 38px;
+    border-bottom-right-radius: 38px;
+    overflow-y: hidden;
+}
+
+.select-global-container .result-container .overflow-scrollbar {
+    max-height: 203px;
+    overflow-y: scroll;
+}
+
+.select-global-container .result-container .item {
+    padding: 15px 0;
+}
+
+.select-global-container .result-container .item:not(:last-child) {
+    border-bottom: 1px solid #00000047;
+}
+
+.select-global-container .result-container .item:hover {
+    background-color: #c83030d8;
+    color: white;
+    cursor: pointer;
+    transition: color .3s ease, background-color .3s ease;
+}
+
+.select-global-container .result-container .item p {
+    font-size: 17px;
+    font-family: normal normal bold 21px/28px Segoe UI;
+    margin: 0;
+    padding: 0 40px;
+}
