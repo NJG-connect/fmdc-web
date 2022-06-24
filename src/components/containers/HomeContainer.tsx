@@ -11,7 +11,6 @@ export default function HomeContainer() {
 
   const fakeData: data[] = [
     {id: 2341, name: "Provins"},
-    {id: 2341, name: "Jsp"},
     {id: 2951, name: "Rousseaux"},
     {id: 9462, name: "DI Environement"},
     {id: 5820, name: "Cocherot"},
