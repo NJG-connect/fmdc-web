@@ -21,7 +21,7 @@ const Select: React.FC<Props> = ({ data, onSelect }) => {
     () =>
       search.length
         ? data.filter(elm =>
-            elm.name.toLowerCase().includes(search.toLowerCase()),
+            elm.name.toLowerCase().includes(search.toLowerCase()) || elm.id.toString().slice(0, search.length).includes(search)
           )
         : [],
     [search],

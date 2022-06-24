@@ -53,7 +53,6 @@
     position: absolute;
     background-color: white;
     width: 800px;
-    /* max-height: 203px; */
     box-shadow: 8px 12px 6px #C8313012;
     border-bottom-left-radius: 38px;
     border-bottom-right-radius: 38px;
@@ -84,5 +83,5 @@
     font-size: 17px;
     font-family: normal normal bold 21px/28px Segoe UI;
     margin: 0;
-    padding: 0 20px;
+    padding: 0 40px;
 }
