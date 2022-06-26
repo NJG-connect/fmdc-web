@@ -1,8 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import dossiersService from '../../api/dossiersService';
-import { UserContext } from '../../contexts/UserContext';
 import { DossiersForToday, SearchDossiers } from '../../types/Dossiers';
-import { JwtUserType } from '../../types/UserContext';
 import { HomeOrganism } from '../organisms';
 
 const GOOD_LETTERS = 'azertyuiopqsdfghjklmwxcvbnéèîô1234567890';
@@ -15,13 +13,12 @@ const fakeData: SearchDossiers = [
 ];
 
 interface Props {
-  goToLogin: () => void;
+  goToDossier: (idDossier: Number) => void;
 }
 
-export default function HomeContainer({ goToLogin }: Props) {
+export default function HomeContainer({ goToDossier }: Props) {
   const [dataForToday, setdataForToday] = useState<DossiersForToday>();
   const [searchData, setsearchData] = useState<SearchDossiers>([]);
-  const { userContext, setUserContext } = useContext(UserContext);
 
   useEffect(() => {
     getInfoForToday();
@@ -44,22 +41,13 @@ export default function HomeContainer({ goToLogin }: Props) {
     }
   };
 
-  const handleLogout = () => {
-    const newUserContext: JwtUserType = { ...userContext };
-    delete newUserContext.exp;
-    delete newUserContext.token;
-    setUserContext(newUserContext);
-
-    goToLogin();
-  };
-
   return (
     <HomeOrganism
       searchData={searchData}
       infosForToday={dataForToday}
       onSearchDossiers={handleSearchDossier}
       dossiersToChange={fakeData}
-      onLogout={handleLogout}
+      goToDossier={goToDossier}
     />
   );
 }

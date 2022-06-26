@@ -5,9 +5,13 @@ import { useNavigate } from 'react-router-dom';
 export default function HomeScreen() {
   let navigate = useNavigate();
 
-  function goToLogin() {
-    navigate('/login', { replace: true });
+  function goToDossier(idDossier: Number) {
+    navigate('/dossier', {
+      state: {
+        idDossier,
+      },
+    });
   }
 
-  return <HomeContainer goToLogin={goToLogin} />;
+  return <HomeContainer goToDossier={goToDossier} />;
 }

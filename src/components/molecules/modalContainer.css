@@ -12,8 +12,9 @@
 }
 
 .modal-container h1 {
-    font-size: 53px;
+    font-size: 33px;
     font-family: "Stunders";
+    text-transform: capitalize;
     text-align: center;
     margin: 0;
 }

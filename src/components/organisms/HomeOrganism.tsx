@@ -1,12 +1,11 @@
 import React from 'react';
-import { useState } from 'react';
 
 import './homeOrganism.css';
 import '../../assets/fonts/index.css';
 
 import { IconButton } from '../atoms';
 import { DayInterventions, Reschedule, Select } from '../molecules/';
-import { Header } from '../templates/';
+import { HeaderTemplate } from '../templates/';
 import { DossiersForToday, SearchDossiers } from '../../types/Dossiers';
 
 interface Props {
@@ -14,7 +13,7 @@ interface Props {
   dossiersToChange: SearchDossiers;
   infosForToday: DossiersForToday | undefined;
   onSearchDossiers: (value: string) => void;
-  onLogout: () => void;
+  goToDossier: (idDossier: Number) => void;
 }
 
 export default function HomeOrganism({
@@ -22,25 +21,14 @@ export default function HomeOrganism({
   onSearchDossiers,
   infosForToday,
   dossiersToChange,
-  onLogout,
+  goToDossier,
 }: Props) {
-  const [isShow, setIsShow] = useState<boolean>(false);
-
   return (
-    <div
-      className="home-organism-body"
-      onClick={() => isShow && setIsShow(false)}>
-      <Header
-        title="Soft Enrobé"
-        isShow={isShow}
-        setIsShow={setIsShow}
-        onLogout={onLogout}
-      />
-
+    <HeaderTemplate>
       <main className="home-organism-main">
         <Select
           data={searchData}
-          onSelect={id => console.log(id)}
+          onSelect={id => goToDossier(id)}
           onChange={onSearchDossiers}
         />
       </main>
@@ -54,6 +42,6 @@ export default function HomeOrganism({
           <IconButton img="addFolder" className="img-container" />
         </div>
       </section>
-    </div>
+    </HeaderTemplate>
   );
 }
