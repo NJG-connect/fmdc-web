@@ -3,36 +3,36 @@ import React from 'react';
 import './dayIntervention.css';
 import './intervention.css';
 
-import { CircleProgressBar, Img } from '../atoms';
+import { CircleProgressBar, Img, Spinner } from '../atoms';
+import { DossiersForToday } from '../../types/Dossiers';
 
 interface Props {
-  date?: Date;
-  interventionOfDay?: number;
-  maxIntervention?: number;
+  infosForToday: DossiersForToday | undefined;
 }
 
-const DayInterventions: React.FC<Props> = ({
-  date,
-  interventionOfDay = 32,
-  maxIntervention = 100,
-}) => {
-  const pourcent: number = (interventionOfDay / maxIntervention) * 100;
-
+const DayInterventions: React.FC<Props> = ({ infosForToday }) => {
   return (
     <div className="intervention-container">
-      <div className="top">
-        <Img className="img" img="road" />
-        <div className="circle-container">
-          <CircleProgressBar pourcentage={pourcent} />
-          <p>{pourcent}%</p>
-        </div>
-      </div>
-      <div className="bottom">
-        <h1>
-          <span>12</span> Intervention du jour
-        </h1>
-        <h3>21/06/2022</h3>
-      </div>
+      {!infosForToday ? (
+        <Spinner />
+      ) : (
+        <>
+          <div className="top">
+            <Img className="img" img="road" />
+            <div className="circle-container">
+              <CircleProgressBar pourcentage={infosForToday.pourcentFinished} />
+              <p>{infosForToday.pourcentFinished}%</p>
+            </div>
+          </div>
+          <div className="bottom">
+            <h1>
+              <span>{infosForToday.totalIntervention}</span> Intervention du
+              jour
+            </h1>
+            <h3>{infosForToday.date}</h3>
+          </div>
+        </>
+      )}
     </div>
   );
 };

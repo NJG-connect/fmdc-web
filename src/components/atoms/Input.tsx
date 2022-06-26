@@ -22,8 +22,8 @@ const Input: React.FC<Props> = ({
   const [eye, setEye] = useState<'eye' | 'closedEye'>('eye');
 
   function handleState() {
-    inputType == 'text' ? setInputType('password') : setInputType('text');
-    eye == 'eye' ? setEye('closedEye') : setEye('eye');
+    inputType === 'text' ? setInputType('password') : setInputType('text');
+    eye === 'eye' ? setEye('closedEye') : setEye('eye');
   }
 
   return (
@@ -35,7 +35,7 @@ const Input: React.FC<Props> = ({
         className={`${className} input`}
         placeholder={placeholder}
       />
-      {type == 'password' && (
+      {type === 'password' && (
         <IconButton
           img={eye}
           className="icon"

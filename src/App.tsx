@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Routes, Route, useNavigate, Navigate, useLocation } from 'react-router-dom';
+import {
+  Routes,
+  Route,
+  useNavigate,
+  Navigate,
+  useLocation,
+} from 'react-router-dom';
 
 import { HomeScreen, LoginScreen } from './components/screens';
 import { UserContext } from './contexts/UserContext';
@@ -11,7 +17,20 @@ import 'react-toastify/dist/ReactToastify.css';
 import './app.css';
 
 function App() {
-  const [userContext, setUserContext] = useState<JwtUserType>();
+  const getInfoFromStorage = (): JwtUserType | undefined => {
+    const infoLocalStorage = localStorage.getItem(
+      process.env.REACT_APP_JWT_SECRET!,
+    );
+
+    if (infoLocalStorage) {
+      return JSON.parse(infoLocalStorage);
+    }
+    return undefined;
+  };
+
+  const [userContext, setUserContext] = useState<JwtUserType | undefined>(
+    getInfoFromStorage(),
+  );
   let navigate = useNavigate();
 
   // check have valid token however redicted to login
@@ -54,37 +73,32 @@ function App() {
     }
   }, [userContext]);
 
-
   const location = useLocation();
   const [displayLocation, setDisplayLocation] = useState(location);
-  const [transitionStage, setTransistionStage] = useState("fadeIn");
+  const [transitionStage, setTransistionStage] = useState('fadeIn');
 
   useEffect(() => {
-    if (location !== displayLocation) setTransistionStage("fadeOut");
+    if (location !== displayLocation) setTransistionStage('fadeOut');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
-  
 
   return (
     <>
       <UserContext.Provider value={{ userContext, setUserContext }}>
-
         <div
           className={`${transitionStage}`}
           onAnimationEnd={() => {
-            if (transitionStage === "fadeOut") {
-              setTransistionStage("fadeIn");
+            if (transitionStage === 'fadeOut') {
+              setTransistionStage('fadeIn');
               setDisplayLocation(location);
             }
-          }}
-        >
-
-        <Routes location={displayLocation}>
-          <Route path="/home" element={<HomeScreen />} />
-          <Route path="/login" element={<HomeScreen />} />
-          <Route path="/" element={<HomeScreen />} />
-          <Route path="*" element={<Navigate to="/home" replace />} />
-        </Routes>
-
+          }}>
+          <Routes location={displayLocation}>
+            <Route path="/home" element={<HomeScreen />} />
+            <Route path="/login" element={<LoginScreen />} />
+            <Route path="/" element={<HomeScreen />} />
+            <Route path="*" element={<Navigate to="/home" replace />} />
+          </Routes>
         </div>
 
         <ToastContainer />

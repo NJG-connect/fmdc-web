@@ -12,20 +12,30 @@ interface data {
 interface Props {
   data: data[];
   onSelect: (id: number) => void;
+  onChange?: (value: string) => void;
+  canFilterData?: boolean;
 }
 // placeholder
-const Select: React.FC<Props> = ({ data, onSelect }) => {
+const Select: React.FC<Props> = ({
+  data,
+  onSelect,
+  onChange,
+  canFilterData = false,
+}) => {
   const [search, setSearch] = useState<string>('');
 
-  const dataFilter = useMemo(
-    () =>
-      search.length
-        ? data.filter(elm =>
-            elm.name.toLowerCase().includes(search.toLowerCase()) || elm.id.toString().slice(0, search.length).includes(search)
+  const dataFilter = useMemo(() => {
+    if (canFilterData) {
+      return search.length
+        ? data.filter(
+            elm =>
+              elm.name.toLowerCase().includes(search.toLowerCase()) ||
+              elm.id.toString().slice(0, search.length).includes(search),
           )
-        : [],
-    [search],
-  );
+        : [];
+    }
+    return data;
+  }, [canFilterData, data, search]);
 
   const display = useMemo(
     () => (dataFilter.length ? 'block' : 'none'),
@@ -37,7 +47,7 @@ const Select: React.FC<Props> = ({ data, onSelect }) => {
       <div
         className="select-container"
         style={
-          display == 'block'
+          display === 'block'
             ? { borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }
             : {}
         }>
@@ -45,7 +55,10 @@ const Select: React.FC<Props> = ({ data, onSelect }) => {
           <input
             type="text"
             placeholder="Rechercher"
-            onChange={e => setSearch(e.target.value)}
+            onChange={e => {
+              setSearch(e.target.value);
+              onChange && onChange(e.target.value);
+            }}
           />
           <IconButton img="search" imgClassName="img" className="button" />
         </div>
