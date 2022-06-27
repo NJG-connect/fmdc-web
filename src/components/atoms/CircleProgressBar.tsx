@@ -9,7 +9,7 @@ interface Props {
 
 const CircleProgressBar: React.FC<Props> = ({ color = "#C83130", pourcentage }) => {
   return (
-    <svg>
+    <svg className="circle-progress-bar">
       <circle
         cx="56"
         cy="56"
