@@ -1,11 +1,11 @@
-svg {
+.circle-progress-bar {
     position: absolute;
     width: 112px;
     height: 112px;
     transform: rotate(-90deg);
 }
 
-svg circle {
+.circle-progress-bar circle {
     fill: none;
     stroke-width: 6px;
     stroke-dashoffset: 0;
