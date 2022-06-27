@@ -85,3 +85,39 @@
     margin: 0;
     padding: 0 40px;
 }
+
+@media only screen and (max-width: 800px) {
+
+    .select-global-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .select-global-container .select-container, .select-global-container .result-container {
+        width: 90%;
+    }
+
+}
+
+
+@media only screen and (max-width: 425px) {
+
+    .select-global-container .select-container {
+        height: 50px;
+    }
+
+    .select-container .content input::placeholder {
+        font-size: 18px;
+    }
+
+    .select-container .content .button {
+        width: 18px;
+        height: 18px;
+    }
+
+    .select-global-container .result-container .item {
+        padding: 10px 0;
+    }
+
+}
