@@ -34,6 +34,7 @@ const Select: React.FC<Props> = ({
           )
         : [];
     }
+    if (!search) return []
     return data;
   }, [canFilterData, data, search]);
 

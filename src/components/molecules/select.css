@@ -103,8 +103,16 @@
 
 @media only screen and (max-width: 425px) {
 
+    .select-global-container {
+        position: relative;
+    }
+
     .select-global-container .select-container {
         height: 50px;
+    }
+
+    .select-container .content input {
+        height: 50%;
     }
 
     .select-container .content input::placeholder {
@@ -116,8 +124,17 @@
         height: 18px;
     }
 
+    .select-global-container .result-container {
+        top: 100%;
+    }
+
     .select-global-container .result-container .item {
         padding: 10px 0;
+    }
+
+    .select-global-container .result-container .item p {
+        font-size: 13px;
+        padding: 0 20px;
     }
 
 }
