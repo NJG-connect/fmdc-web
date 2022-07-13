@@ -21,7 +21,7 @@ const DayInterventions: React.FC<Props> = ({ infosForToday }) => {
             <Img className="img" img="road" />
             <div className="circle-container">
               <CircleProgressBar pourcentage={infosForToday.pourcentFinished} />
-              <p>{infosForToday.pourcentFinished}%</p>
+              <p>{Math.round(infosForToday.pourcentFinished)}%</p>
             </div>
           </div>
           <div className="bottom">
