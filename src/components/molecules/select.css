@@ -92,10 +92,13 @@
         width: 100%;
         display: flex;
         justify-content: center;
+        position: relative;
     }
 
     .select-global-container .select-container, .select-global-container .result-container {
         width: 90%;
+        top: 100%;
+
     }
 
 }

@@ -75,10 +75,6 @@
 
 @media only screen and (max-width: 1305px) {
 
-    .header-template-body {
-        height: auto;
-    }
-
     .home-organism-bottom .icon {
         width: 402px;
         flex-direction: row;

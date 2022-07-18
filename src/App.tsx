@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Routes,
-  Route,
-  useNavigate,
-  Navigate,
-  useLocation,
-} from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 
-import { HomeScreen, LoginScreen } from './components/screens';
+import {
+  HomeScreen,
+  LoginScreen,
+  DossierScreen,
+  BackToHomeScreen,
+} from './components/screens';
 import { UserContext } from './contexts/UserContext';
 import { JwtUserType } from './types/UserContext';
 
@@ -95,9 +94,11 @@ function App() {
           }}>
           <Routes location={displayLocation}>
             <Route path="/home" element={<HomeScreen />} />
+            <Route path="/dossier/:idDossier" element={<DossierScreen />} />
             <Route path="/login" element={<LoginScreen />} />
             <Route path="/" element={<HomeScreen />} />
-            <Route path="*" element={<Navigate to="/home" replace />} />
+            <Route path="*" element={<BackToHomeScreen />} />
+            {/* <Route path="*" element={<Navigate to="/home" replace />} /> */}
           </Routes>
         </div>
 

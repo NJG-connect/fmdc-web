@@ -6,10 +6,8 @@ export default function HomeScreen() {
   let navigate = useNavigate();
 
   function goToDossier(idDossier: Number) {
-    navigate('/dossier', {
-      state: {
-        idDossier,
-      },
+    navigate(`/dossier/${idDossier}`, {
+      state: {},
     });
   }
 

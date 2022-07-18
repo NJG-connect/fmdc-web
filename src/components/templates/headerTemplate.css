@@ -1,6 +1,10 @@
 .header-template-body {
   background-color: #F8F8F8;
   height: 100vh;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 header {
@@ -51,7 +55,7 @@ header {
   margin-right: 1rem;
 }
 
-.user-information .icon:hover{
+.user-information .icon:hover {
   cursor: pointer;
 }
 
@@ -69,13 +73,13 @@ header {
 }
 
 @media only screen and (max-width: 768px) {
- 
+
   .exim-logo {
-      transform: scale(.8) translateY(25%);
+    transform: scale(.8) translateY(25%);
   }
 
   .icon {
-      transform: scale(.8);
+    transform: scale(.8);
   }
 
 }
@@ -84,7 +88,7 @@ header {
 @media only screen and (max-width: 1305px) {
 
   .header-template-body {
-      height: auto;
+    height: auto;
   }
 
 }
@@ -93,7 +97,7 @@ header {
 
   .header-template-body .exim-logo {
     transform: translateY(35%);
-    width: 80px; 
+    width: 80px;
     margin-left: 5px;
   }
 
@@ -131,4 +135,3 @@ header {
   }
 
 }
-

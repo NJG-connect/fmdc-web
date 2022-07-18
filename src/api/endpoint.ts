@@ -13,7 +13,7 @@ export const INTERVENTION = 'intervention/';
 export const PRELEVEMENT = 'prelevement/';
 export const COUCHE = 'couches/';
 
-type RootName = 'login' | 'dossiersForToday' | 'searchDossiers';
+type RootName = 'login' | 'dossiersForToday' | 'searchDossiers' | 'dossierById';
 
 export default function urlApi(
   rootName: RootName,
@@ -23,6 +23,7 @@ export default function urlApi(
     login: `${BASE_URL + AUTH + 'login'}`,
     dossiersForToday: `${BASE_URL + DOSSIERS + 'dossiersForToday'}`,
     searchDossiers: `${BASE_URL + DOSSIERS + args[0]}`,
+    dossierById: `${BASE_URL + DOSSIER + args[0]}`,
   };
   return url[rootName];
 }
