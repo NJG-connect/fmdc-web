@@ -21,7 +21,7 @@ export default function LoginOrganism({ onSubmit }: Props) {
   );
 
   return (
-    <main>
+    <main className="main">
       <Img className="background" img="background" />
 
       <div className="card-container">

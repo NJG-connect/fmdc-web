@@ -1,11 +1,11 @@
 .header-dossier {
-  margin: 50px 50px;
+  margin: 10px 50px 20px;
   background: #FFFFFF 0% 0% no-repeat padding-box;
   box-shadow: 8px 12px 6px #C831300F;
   border: 1px solid #C8313033;
   border-radius: 32px;
   opacity: 1;
   display: flex;
-  min-height: 70vh;
+  flex: 1;
   flex-direction: column;
 }

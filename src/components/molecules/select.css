@@ -1,3 +1,11 @@
+.select-global-container {
+    height: 291px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
 .select-global-container .select-container {
     width: 800px;
     height: 80px;
@@ -5,6 +13,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     border: 1px solide #C831302E;
     border-radius: 38px;
     box-shadow: 8px 12px 6px #C8313012;
@@ -50,7 +59,6 @@
 }
 
 .select-global-container .result-container {
-    position: absolute;
     background-color: white;
     width: 800px;
     box-shadow: 8px 12px 6px #C8313012;
@@ -90,25 +98,17 @@
 
     .select-global-container {
         width: 100%;
-        display: flex;
-        justify-content: center;
-        position: relative;
     }
 
-    .select-global-container .select-container, .select-global-container .result-container {
+    .select-global-container .select-container,
+    .select-global-container .result-container {
         width: 90%;
-        top: 100%;
-
     }
 
 }
 
-
 @media only screen and (max-width: 425px) {
 
-    .select-global-container {
-        position: relative;
-    }
 
     .select-global-container .select-container {
         height: 50px;
@@ -125,10 +125,6 @@
     .select-container .content .button {
         width: 18px;
         height: 18px;
-    }
-
-    .select-global-container .result-container {
-        top: 100%;
     }
 
     .select-global-container .result-container .item {

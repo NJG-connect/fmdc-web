@@ -52,9 +52,7 @@ const HeaderTemplate: React.FC<Props> = ({ children }) => {
 
   const [isShow, setIsShow] = useState<boolean>(false);
   return (
-    <div
-      className="header-template-body"
-      onClick={() => isShow && setIsShow(false)}>
+    <div className="page" onClick={() => isShow && setIsShow(false)}>
       <header>
         <Img className="exim-logo" img="logoAndBrand" />
 
@@ -68,7 +66,7 @@ const HeaderTemplate: React.FC<Props> = ({ children }) => {
           <p>{role}</p>
         </div>
       </header>
-      {children}
+      <div className="content-page">{children}</div>
     </div>
   );
 };

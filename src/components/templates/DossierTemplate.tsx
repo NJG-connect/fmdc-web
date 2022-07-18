@@ -8,8 +8,7 @@ export default function DossierTemplate({ children }: Props) {
   return (
     <div className="header-dossier">
       <p>DossierTemplate</p>
-      <p>DossierTemplate</p>
-      {/* <div>{children}</div> */}
+      <div>{children}</div>
     </div>
   );
 }
