@@ -16,7 +16,9 @@ export interface Diag {
   latitude: string;
   commentaire: string;
   idStatut: number;
-  StatutDossier: StatutDossier;
+  StatutDossier: {
+    intitule: StatutDossier;
+  };
 }
 export interface MyHap {
   id: number;
@@ -98,3 +100,19 @@ export enum StatutDossier {
   'En attente infos/documents - DPE' = 'En attente infos/documents - DPE',
   'DRIVE' = 'DRIVE',
 }
+
+export enum menuIndex {
+  'dossier' = 'dossier',
+  'intervention' = 'intervention',
+  'lab' = 'lab',
+  'docs' = 'docs',
+}
+
+export type keyOfMenuIndex = keyof typeof menuIndex;
+
+export const menuForDossier: { [key in keyOfMenuIndex]: string } = {
+  [menuIndex.dossier]: 'Dossier',
+  [menuIndex.intervention]: 'Intervention',
+  [menuIndex.lab]: 'Lab / Résultat',
+  [menuIndex.docs]: 'Docs / Rapports',
+};

@@ -85,6 +85,14 @@
 
 }
 
+@media only screen and (max-width: 768px) {
+
+    .home-organism-main {
+        margin-top: 20px;
+        flex: 0.7;
+    }
+}
+
 @media only screen and (max-width: 1305px) {
 
     .home-organism-bottom .icon {

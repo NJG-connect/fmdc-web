@@ -91,6 +91,10 @@ header {
 
 @media only screen and (max-width: 600px) {
 
+  .content-page {
+    padding-top: 30px;
+  }
+
   header .exim-logo {
     transform: translateY(35%);
     width: 80px;

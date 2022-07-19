@@ -1,6 +1,7 @@
 import eye from './eye.svg';
 import closedEye from './eye-2.svg';
-import search from "./search.svg"
+import search from './search.svg';
+import backIcon from './backIcon.svg';
 
 export type ImageType =
   | 'logoAndBrand'
@@ -13,8 +14,9 @@ export type ImageType =
   | 'logout'
   | 'folder'
   | 'eye'
-  | "closedEye"
-  | "search"
+  | 'closedEye'
+  | 'search'
+  | 'backIcon';
 
 const images: { [key in ImageType]: any } = {
   logoAndBrand: require('./logoAndBrand.png'),
@@ -28,7 +30,8 @@ const images: { [key in ImageType]: any } = {
   logout: require('./logout.png'),
   eye,
   closedEye,
-  search
+  search,
+  backIcon,
 };
 
 export default images;
