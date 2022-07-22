@@ -24,7 +24,12 @@ const ModalContainer: React.FC<Props> = ({
       <p>Mon profil</p>
       <div className="button-container">
         <Img img="logout" className="img" />
-        <Button className="button" title="Déconnexion" onClick={onClick} />
+        <Button
+          className="button-modal-home"
+          title="Déconnexion"
+          onClick={onClick}
+          withoutStyle
+        />
       </div>
     </div>
   );

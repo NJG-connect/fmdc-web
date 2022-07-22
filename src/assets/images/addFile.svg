@@ -1,0 +1,16 @@
+<svg id="icons8_new_copy" xmlns="http://www.w3.org/2000/svg" width="57.2" height="64.064" viewBox="0 0 57.2 64.064">
+  <path id="Tracé_9" data-name="Tracé 9" d="M5.5,59.7V2.5H35.93L48.972,15.542V59.7Z" transform="translate(-4.356 -1.356)" fill="#fff"/>
+  <path id="Tracé_10" data-name="Tracé 10" d="M36.117,4.288,48.472,16.643V59.2H7.288V4.288H36.117M37.032,2H5V61.488H50.76V15.728L37.032,2Z" transform="translate(-5 -2)" fill="#788b9c"/>
+  <path id="Tracé_11" data-name="Tracé 11" d="M16.273,46.032H38.009V14.458c-.686-.229-1.6-.229-2.288-.458V43.744H14.9C15.358,44.43,15.815,45.346,16.273,46.032Z" transform="translate(7.751 13.456)" fill="#c5d4de"/>
+  <path id="Tracé_12" data-name="Tracé 12" d="M18.5,16.228V2.5h.686L32.228,15.542v.686Z" transform="translate(12.388 -1.356)" fill="#fff"/>
+  <path id="Tracé_13" data-name="Tracé 13" d="M31.88,5.2,42.4,15.728H31.88V5.2m0-3.2H29.592V18.016H45.608V15.728L31.88,2ZM9,24.88H36.456v2.288H9Z" transform="translate(0.152 -2)" fill="#788b9c"/>
+  <path id="Tracé_14" data-name="Tracé 14" d="M9,24.864H36.456v2.288H9ZM9,18H36.456v2.288H9Z" transform="translate(0.152 18.608)" fill="#bcc9d6"/>
+  <path id="Tracé_15" data-name="Tracé 15" d="M9,15H31.88v2.288H9Z" transform="translate(0.152 14.744)" fill="#788b9c"/>
+  <path id="Tracé_16" data-name="Tracé 16" d="M31.372,16.5A14.872,14.872,0,1,0,46.244,31.372,14.872,14.872,0,0,0,31.372,16.5Z" transform="translate(9.812 16.676)" fill="#bae0bd"/>
+  <path id="Tracé_17" data-name="Tracé 17" d="M32.016,18.288A13.728,13.728,0,1,1,18.288,32.016,13.768,13.768,0,0,1,32.016,18.288m0-2.288A16.016,16.016,0,1,0,48.032,32.016,15.917,15.917,0,0,0,32.016,16Z" transform="translate(9.168 16.032)" fill="#5e9c76"/>
+  <g id="Groupe_9" data-name="Groupe 9" transform="translate(9.152 36.608)">
+    <path id="Tracé_18" data-name="Tracé 18" d="M20.9,24.864H9v2.288H20.669C20.669,26.466,20.9,25.55,20.9,24.864ZM23.872,18H9v2.288H22.5C22.957,19.6,23.414,18.686,23.872,18Z" transform="translate(-9 -18)" fill="#788b9c"/>
+  </g>
+  <path id="Tracé_19" data-name="Tracé 19" d="M22,19h4.576V37.3H22Z" transform="translate(16.896 19.896)" fill="#fff"/>
+  <path id="Tracé_20" data-name="Tracé 20" d="M19,22H37.3v4.576H19Z" transform="translate(13.032 23.76)" fill="#fff"/>
+</svg>

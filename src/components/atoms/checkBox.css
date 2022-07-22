@@ -1,0 +1,7 @@
+.checkBox-container {
+  height: 40px;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}

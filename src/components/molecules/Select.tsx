@@ -34,7 +34,7 @@ const Select: React.FC<Props> = ({
           )
         : [];
     }
-    if (!search) return []
+    if (!search) return [];
     return data;
   }, [canFilterData, data, search]);
 
@@ -61,7 +61,11 @@ const Select: React.FC<Props> = ({
               onChange && onChange(e.target.value);
             }}
           />
-          <IconButton img="search" imgClassName="img" className="button" />
+          <IconButton
+            img="search"
+            imgClassName="img"
+            className="select-button"
+          />
         </div>
       </div>
 

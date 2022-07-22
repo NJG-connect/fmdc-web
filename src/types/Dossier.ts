@@ -1,6 +1,8 @@
+import { FileType } from './file';
+
 export interface Dossier {
   diag: Diag;
-  MyHAP: MyHap;
+  myHAP: MyHap;
 }
 
 export interface Diag {
@@ -16,6 +18,10 @@ export interface Diag {
   latitude: string;
   commentaire: string;
   idStatut: number;
+  codePostal: string;
+  dateCommande: Date;
+  docs: FileType[];
+  idEmployeIntervention: number;
   StatutDossier: {
     intitule: StatutDossier;
   };

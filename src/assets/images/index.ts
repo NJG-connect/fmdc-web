@@ -2,6 +2,7 @@ import eye from './eye.svg';
 import closedEye from './eye-2.svg';
 import search from './search.svg';
 import backIcon from './backIcon.svg';
+import addFile from './addFile.svg';
 
 export type ImageType =
   | 'logoAndBrand'
@@ -16,7 +17,8 @@ export type ImageType =
   | 'eye'
   | 'closedEye'
   | 'search'
-  | 'backIcon';
+  | 'backIcon'
+  | 'addFile';
 
 const images: { [key in ImageType]: any } = {
   logoAndBrand: require('./logoAndBrand.png'),
@@ -32,6 +34,7 @@ const images: { [key in ImageType]: any } = {
   closedEye,
   search,
   backIcon,
+  addFile,
 };
 
 export default images;

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Dossier, keyOfMenuIndex, menuIndex } from '../../types/Dossier';
 import { DossierTemplate } from '../templates';
+import { HomeDossier } from '../views';
 
 interface Props {
   dossier: Dossier | undefined;
@@ -14,9 +15,7 @@ export default function DossierOrganism({ dossier }: Props) {
       dossier={dossier}
       keyMenu={keyMenu}
       selectMenu={setkeyMenu}>
-      <div>
-        <p>DossierOrganism</p>
-      </div>
+      <HomeDossier dossier={dossier} />
     </DossierTemplate>
   );
 }

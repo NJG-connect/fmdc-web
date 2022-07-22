@@ -34,18 +34,18 @@
     margin-left: 10px;
 }
 
-.modal-container .button:hover {
+.modal-container .button-modal-home:hover {
     cursor: pointer;
 }
 
-.modal-container .button p {
+.modal-container .button-modal-home p {
     font-size: 1rem;
     font-weight: bold;
     font-family: normal normal bold 16px/21px Segoe UI;
     margin-left: 10px;
 }
 
-.button-container .img{
+.button-container .img {
     width: 20px;
     height: 20px;
     border-radius: 50%;

@@ -5,6 +5,8 @@ import CircleProgressBar from './CircleProgressBar';
 import Img from './Img';
 import IconButton from './IconButton';
 import Spinner from './Spinner';
+import CheckBox from './CheckBox';
+import Textarea from './Textarea';
 
 export {
   Button,
@@ -14,4 +16,6 @@ export {
   Img,
   IconButton,
   Spinner,
+  CheckBox,
+  Textarea,
 };

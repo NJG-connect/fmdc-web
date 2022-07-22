@@ -5,10 +5,12 @@ import { IconButton } from './';
 
 interface Props {
   name: string;
-  type: 'text' | 'password';
+  type: 'text' | 'password' | 'number' | 'datetime-local';
   onChange: (value: string) => void;
   className?: string;
+  classNameContainer?: string;
   placeholder?: string;
+  value?: string | number | null;
 }
 
 const Input: React.FC<Props> = ({
@@ -16,9 +18,13 @@ const Input: React.FC<Props> = ({
   type,
   onChange,
   className = '',
+  classNameContainer = '',
   placeholder,
+  value,
 }) => {
-  const [inputType, setInputType] = useState<'text' | 'password'>(type);
+  const [inputType, setInputType] = useState<
+    'text' | 'password' | 'number' | 'date' | 'datetime-local'
+  >(type);
   const [eye, setEye] = useState<'eye' | 'closedEye'>('eye');
 
   function handleState() {
@@ -27,10 +33,11 @@ const Input: React.FC<Props> = ({
   }
 
   return (
-    <div className="container">
+    <div className={`${classNameContainer} container`}>
       <p className="title">{name}</p>
       <input
         type={inputType}
+        value={value || undefined}
         onChange={e => onChange(e.target.value)}
         className={`${className} input`}
         placeholder={placeholder}

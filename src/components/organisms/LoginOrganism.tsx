@@ -40,7 +40,6 @@ export default function LoginOrganism({ onSubmit }: Props) {
           />
         </div>
         <Button
-          className="button"
           title="Se connecter"
           onClick={() => onSubmit(infoUser)}
           disabled={infoUserIsEmpty}
