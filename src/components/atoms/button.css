@@ -13,6 +13,9 @@
     animation: .5s inputUp forwards;
     animation-delay: .9s;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .button:hover {

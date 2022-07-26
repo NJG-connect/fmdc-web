@@ -1,35 +1,43 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import images from '../../assets/images';
 import { Dossier } from '../../types/Dossier';
-import {
-  Button,
-  CheckBox,
-  IconButton,
-  Input,
-  Spinner,
-  Textarea,
-} from '../atoms';
-import { CardImageDossier } from '../molecules';
+import { FileTypeEnum, FileTypeName } from '../../types/file';
+import { Button, CheckBox, IconButton, Input, Textarea } from '../atoms';
+import { CardImageDossier, Modal } from '../molecules';
+
 import './homeDossier.css';
 
 interface Props {
-  dossier: Dossier | undefined;
+  dossier: Dossier;
+  postOnlyFile: (files: any) => void;
 }
+interface FileWaitForUpload {
+  type?: FileTypeEnum.DICT | FileTypeEnum.PLAN | '';
+  file?: File;
+}
+const initFile: FileWaitForUpload = { type: '' };
 
-export default function HomeDossier({ dossier: dossierProps }: Props) {
-  const initDossier = useMemo(
-    () => (!!dossierProps ? dossierProps : undefined),
-    [dossierProps],
-  );
-  const [dossier, setdossier] = useState<Dossier | undefined>(dossierProps);
-  const inputAddFileOnDossierRef = useRef<HTMLInputElement>(null);
+export default function HomeDossier({
+  dossier: dossierProps,
+  postOnlyFile,
+}: Props) {
+  const [dossier, setdossier] = useState<Dossier>(dossierProps);
+  const [fileForAdd, setfileForAdd] = useState<FileWaitForUpload[]>([initFile]);
+  const [openModalForFile, setopenModalForFile] = useState(false);
 
   useEffect(() => {
-    setdossier(initDossier);
-  }, [initDossier]);
-
-  useEffect(() => {
-    console.log(inputAddFileOnDossierRef); // { current: <h1_object> }
-  }, [inputAddFileOnDossierRef]);
+    if (
+      JSON.stringify(dossierProps.diag.docs) !==
+      JSON.stringify(dossier.diag.docs)
+    ) {
+      setopenModalForFile(false);
+      setfileForAdd([initFile]);
+      setdossier({
+        ...dossier,
+        diag: { ...dossier.diag, docs: dossierProps.diag.docs },
+      });
+    }
+  }, [dossier, dossierProps]);
 
   const onEditDossier = () => {};
 
@@ -37,22 +45,43 @@ export default function HomeDossier({ dossier: dossierProps }: Props) {
     console.log('save');
   };
 
-  const clickOnAddFile = (
-    justClick: boolean,
-    event?: (EventTarget & HTMLInputElement) | any,
-  ) => {
-    if (!!justClick) {
-      if (null !== inputAddFileOnDossierRef.current) {
-        return inputAddFileOnDossierRef.current.click();
-      }
-    }
-    console.log('alllerr');
-    console.log(event);
+  const handlePostFiles = () => {
+    const formData = new FormData();
+    let typeFileForUpdate: { [key: string]: string } = {};
+    fileForAdd.forEach((oneFile, index) => {
+      formData.append(`files[${index}]`, oneFile.file!, oneFile.file!.name!);
+      typeFileForUpdate[oneFile.file!.name!] = oneFile.type!;
+    });
+    formData.append('type', JSON.stringify(typeFileForUpdate));
+    postOnlyFile(formData);
   };
 
-  if (!dossier) {
-    return <Spinner />;
-  }
+  const clickOnAddFile = (
+    justClick: boolean,
+    indexOfInput: number,
+    event?: any,
+  ) => {
+    const inputElement: HTMLInputElement | null = document.querySelector(
+      `#addFileInput-${indexOfInput}`,
+    );
+
+    if (!!justClick) {
+      if (null !== inputElement) {
+        return inputElement!.click();
+      }
+    }
+
+    const [oneFile] = event.target.files;
+    onChangeOneFile(indexOfInput, 'file', oneFile);
+  };
+
+  const onChangeOneFile = (index: number, nameInput: string, event: string) => {
+    let newFileForAdd = [...fileForAdd];
+
+    newFileForAdd[index] = { ...newFileForAdd[index], [nameInput]: event };
+    setfileForAdd(newFileForAdd);
+  };
+
   return (
     <div className="home-dossier-content">
       <div className="home-dossier-form">
@@ -123,26 +152,88 @@ export default function HomeDossier({ dossier: dossierProps }: Props) {
           />
 
           <div className="home-dossier-list-docs">
-            {dossier.diag.docs.map(file => (
-              <CardImageDossier key={file.name} file={file} />
+            {dossier.diag.docs.map((file, index) => (
+              <CardImageDossier key={`${file.name}-${index}`} file={file} />
             ))}
             <IconButton
-              onClick={() => clickOnAddFile(true)}
+              onClick={() => setopenModalForFile(true)}
               className="dossier-add-file"
               img="addFile"
               imgClassName="dossier-add-file-image"
             />
           </div>
-          <input
-            ref={inputAddFileOnDossierRef}
-            type="file"
-            id="addFileInput"
-            name="addFileInput"
-            className="dossier-add-file-image-input"
-            onChange={event => clickOnAddFile(false, event)}
-          />
         </div>
       </div>
+
+      <Modal
+        isOpen={openModalForFile}
+        onClose={() => setopenModalForFile(false)}
+        title="Upload Fichier">
+        <div className="modal-home-dossier-container">
+          <div>
+            {fileForAdd.map((addElement, index) => (
+              <div className="dossier-modal-section-container" key={index}>
+                <div className="dossier-modal-section-top">
+                  <div className="dossier-modal-section">
+                    <p>Ajoute un Type</p>
+                    <select
+                      name="typeFile"
+                      id="typeFile"
+                      value={addElement.type || ''}
+                      onChange={event => {
+                        onChangeOneFile(index, 'type', event.target.value);
+                      }}
+                      className="dossier-modal-select">
+                      <option value="">Type du Fichier : </option>
+                      {[FileTypeEnum.DICT, FileTypeEnum.PLAN].map(el => (
+                        <option key={el} value={el}>
+                          {FileTypeName[el]}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="dossier-modal-section">
+                    <p>Ajoute un Fichier :</p>
+                    <input
+                      type="file"
+                      id={`addFileInput-${index}`}
+                      className="dossier-add-file-image-input"
+                      onChange={event => clickOnAddFile(false, index, event)}
+                    />
+                    <img
+                      onClick={() => clickOnAddFile(true, index)}
+                      className="dossier-modal-select dossier-modal-img-add"
+                      alt="add-file"
+                      src={addElement.file ? images.addFileOk : images.addFile}
+                    />
+                  </div>
+                </div>
+                {fileForAdd[index] &&
+                  fileForAdd[index].file !== undefined &&
+                  fileForAdd[index].file!.name !== undefined && (
+                    <p className="dossier-modal-add-file-name">
+                      nom du fichier ajouté : {fileForAdd[index].file!.name}
+                    </p>
+                  )}
+                <div
+                  className="dossier-modal-add-more-file"
+                  onClick={() => {
+                    setfileForAdd([...fileForAdd, initFile]);
+                  }}>
+                  Ajouter un Autre Fichier
+                </div>
+              </div>
+            ))}
+          </div>
+          <Button
+            onClick={handlePostFiles}
+            title="Enregistrer"
+            className="dossier-modal-button"
+            disabled={!fileForAdd.every(el => !!el.type && !!el.file)}
+          />
+        </div>
+      </Modal>
+
       <div className="dossier-valid-content">
         <Button
           onClick={handleSave}

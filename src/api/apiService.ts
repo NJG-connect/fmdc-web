@@ -8,22 +8,34 @@ import { fakeFetch } from './mock';
 type Method = 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE';
 
 class ApiService {
-  async request(url: string, method: Method, body?: Object, params?: any) {
+  async request(
+    url: string,
+    method: Method,
+    body?: Object,
+    params?: any,
+    isFile: boolean = false,
+  ) {
     if (process.env.REACT_APP_ENABLED_FAKE_API === 'true') {
       return await fakeFetch(url, method, body, {
         ignoreBaseURL: BASE_URL,
         delay: 2000,
       });
     }
+    const headers = {
+      'Content-type': 'application/json',
+      Authorization: this.getTokenFromContext(),
+      ...params,
+    };
+    let bodyValue: any = body ? JSON.stringify(body) : null;
+    if (isFile) {
+      bodyValue = body;
+      delete headers['Content-type'];
+    }
 
     const response = await fetch(url, {
       method,
-      headers: {
-        'Content-type': 'application/json',
-        Authorization: this.getTokenFromContext(),
-        ...params,
-      },
-      body: body ? JSON.stringify(body) : null,
+      headers,
+      body: bodyValue,
     });
     let responseJson;
     try {
@@ -58,6 +70,9 @@ class ApiService {
 
   async post(url: string, body: Object) {
     return await this.request(url, 'POST', body);
+  }
+  async postFile(url: string, body: Object) {
+    return await this.request(url, 'POST', body, {}, true);
   }
 
   async patch(url: string, body: Object) {

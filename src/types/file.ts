@@ -13,7 +13,7 @@ export const FileTypeName: { [key in FileTypeEnum]: string } = {
   [FileTypeEnum.PRE_RAPPORT]: 'Pre-rapport',
   [FileTypeEnum.RAPPORT]: 'Rapport',
   [FileTypeEnum.PLAN]: 'Plan',
-  [FileTypeEnum.DICT]: 'Dict',
+  [FileTypeEnum.DICT]: 'Dict-Arreté',
   [FileTypeEnum.INTERVENTION]: 'Intervention',
   [FileTypeEnum.DOSSIER]: 'Docs',
 };

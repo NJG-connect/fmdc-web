@@ -35,5 +35,15 @@ export default function DossierContainer({ idDossier, goToHome }: Props) {
     }
   }, [idDossier, goToHome, infoDossier]);
 
-  return <DossierOrganism dossier={dossier} />;
+  const postOnlyFile = async (files: any) => {
+    const data = await dossierService.postFileOnDossier(idDossier!, files);
+    if (data.succes) {
+      setdossier(data.data as Dossier);
+      toast('Les Fichiers ont Bien été Upload', ToastConfig.SUCCESS);
+    } else {
+      toast(data.data, ToastConfig.ERROR);
+    }
+  };
+
+  return <DossierOrganism dossier={dossier} postOnlyFile={postOnlyFile} />;
 }

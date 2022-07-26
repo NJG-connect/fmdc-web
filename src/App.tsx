@@ -92,6 +92,8 @@ function App() {
               setDisplayLocation(location);
             }
           }}>
+          <div id="app-modal" />
+
           <Routes location={displayLocation}>
             <Route path="/home" element={<HomeScreen />} />
             <Route path="/dossier/:idDossier" element={<DossierScreen />} />

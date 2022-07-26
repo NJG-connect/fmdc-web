@@ -3,6 +3,7 @@ import DayInterventions from './DayInterventions';
 import Reschedule from './Reschedule';
 import Select from './Select';
 import CardImageDossier from './CardImageDossier';
+import Modal from './Modal';
 
 export {
   ModalContainer,
@@ -10,4 +11,5 @@ export {
   Reschedule,
   Select,
   CardImageDossier,
+  Modal,
 };
