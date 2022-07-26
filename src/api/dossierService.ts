@@ -8,6 +8,13 @@ async function getInfoDossierById(idDossier: string) {
 async function postFileOnDossier(idDossier: string, files: any) {
   return await apiService.postFile(urlApi('dossierFileById', idDossier), files);
 }
+async function editDossierById(idDossier: string, value: any) {
+  return await apiService.patch(urlApi('dossierById', idDossier), value);
+}
 
-const dossierService = { getInfoDossierById, postFileOnDossier };
+const dossierService = {
+  getInfoDossierById,
+  postFileOnDossier,
+  editDossierById,
+};
 export default dossierService;

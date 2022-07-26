@@ -27,6 +27,7 @@
   margin-left: 40px;
   margin-top: 20px;
   row-gap: 20px;
+  overflow-x: clip;
 }
 
 .gmap_canvas {
@@ -71,10 +72,8 @@
   column-gap: 20px;
   overflow-x: auto;
   flex: 1;
-}
-
-.home-dossier-list-docs {
   max-height: 180px;
+  margin-bottom: 10px;
 }
 
 .dossier-add-file {
@@ -200,6 +199,7 @@
 
   .home-dossier-right {
     margin-left: 0px;
+    overflow-x: initial;
   }
 
   .home-dossier-right {

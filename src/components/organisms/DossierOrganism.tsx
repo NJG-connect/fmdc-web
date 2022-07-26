@@ -8,9 +8,14 @@ import './dossierOrganism.css';
 interface Props {
   dossier: Dossier | undefined;
   postOnlyFile: (files: any) => void;
+  onEditDossier: (values: any) => void;
 }
 
-export default function DossierOrganism({ dossier, postOnlyFile }: Props) {
+export default function DossierOrganism({
+  dossier,
+  postOnlyFile,
+  onEditDossier,
+}: Props) {
   const [keyMenu, setkeyMenu] = useState<keyOfMenuIndex>(menuIndex.dossier);
 
   return (
@@ -21,7 +26,11 @@ export default function DossierOrganism({ dossier, postOnlyFile }: Props) {
       {dossier === undefined ? (
         <Spinner className="loading-dossier" />
       ) : (
-        <HomeDossier dossier={dossier} postOnlyFile={postOnlyFile} />
+        <HomeDossier
+          dossier={dossier}
+          postOnlyFile={postOnlyFile}
+          onEditDossier={onEditDossier}
+        />
       )}
     </DossierTemplate>
   );

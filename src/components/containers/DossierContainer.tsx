@@ -45,5 +45,21 @@ export default function DossierContainer({ idDossier, goToHome }: Props) {
     }
   };
 
-  return <DossierOrganism dossier={dossier} postOnlyFile={postOnlyFile} />;
+  const onEditDossier = async (values: any) => {
+    const data = await dossierService.editDossierById(idDossier!, values);
+    if (data.succes) {
+      setdossier(data.data as Dossier);
+      toast('Champs mis à jour', ToastConfig.SUCCESS);
+    } else {
+      toast(data.data, ToastConfig.ERROR);
+    }
+  };
+
+  return (
+    <DossierOrganism
+      dossier={dossier}
+      postOnlyFile={postOnlyFile}
+      onEditDossier={onEditDossier}
+    />
+  );
 }

@@ -37,7 +37,7 @@ const Input: React.FC<Props> = ({
       <p className="title">{name}</p>
       <input
         type={inputType}
-        value={value || undefined}
+        value={value || ''}
         onChange={e => onChange(e.target.value)}
         className={`${className} input`}
         placeholder={placeholder}

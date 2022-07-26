@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import images from '../../assets/images';
-import { Dossier } from '../../types/Dossier';
+import { Diag, Dossier, MyHap } from '../../types/Dossier';
 import { FileTypeEnum, FileTypeName } from '../../types/file';
 import { Button, CheckBox, IconButton, Input, Textarea } from '../atoms';
 import { CardImageDossier, Modal } from '../molecules';
@@ -10,6 +10,7 @@ import './homeDossier.css';
 interface Props {
   dossier: Dossier;
   postOnlyFile: (files: any) => void;
+  onEditDossier: (value: any) => void;
 }
 interface FileWaitForUpload {
   type?: FileTypeEnum.DICT | FileTypeEnum.PLAN | '';
@@ -20,10 +21,15 @@ const initFile: FileWaitForUpload = { type: '' };
 export default function HomeDossier({
   dossier: dossierProps,
   postOnlyFile,
+  onEditDossier,
 }: Props) {
   const [dossier, setdossier] = useState<Dossier>(dossierProps);
   const [fileForAdd, setfileForAdd] = useState<FileWaitForUpload[]>([initFile]);
   const [openModalForFile, setopenModalForFile] = useState(false);
+  const [fieldUpdated, setfieldUpdated] = useState<{ [key: string]: any }>({
+    diag: {},
+    myHAP: {},
+  });
 
   useEffect(() => {
     if (
@@ -37,12 +43,29 @@ export default function HomeDossier({
         diag: { ...dossier.diag, docs: dossierProps.diag.docs },
       });
     }
-  }, [dossier, dossierProps]);
+  }, [dossierProps, dossier]);
 
-  const onEditDossier = () => {};
+  const handleEditDossier = (
+    keyOfDossier: keyof typeof dossier,
+    nameInput: keyof Diag | keyof MyHap,
+    value?: string | boolean,
+  ) => {
+    let newDossier: { [key: string]: any } = { ...dossier };
+
+    newDossier[keyOfDossier][nameInput] = value || null;
+    const newFieldUpdated = { ...fieldUpdated };
+    if (value) {
+      newFieldUpdated[keyOfDossier][nameInput] = value;
+    } else {
+      delete newFieldUpdated[keyOfDossier][nameInput];
+    }
+
+    setfieldUpdated(newFieldUpdated);
+    setdossier(newDossier as Dossier);
+  };
 
   const handleSave = () => {
-    console.log('save');
+    onEditDossier(fieldUpdated);
   };
 
   const handlePostFiles = () => {
@@ -123,7 +146,7 @@ export default function HomeDossier({
               type="text"
               value={dossier.myHAP.typologie}
               name="TYPOLOGIE DE MISSION :"
-              onChange={onEditDossier}
+              onChange={el => handleEditDossier('myHAP', 'typologie', el)}
               classNameContainer="input-home-dossier"
             />
           </div>
@@ -131,13 +154,15 @@ export default function HomeDossier({
             <Input
               type="text"
               name="DATE DE COMMANDE :"
-              onChange={onEditDossier}
+              onChange={el => handleEditDossier('diag', 'dateCommande', el)}
               value={String(dossier.diag.dateCommande)}
               classNameContainer="input-home-dossier"
             />
 
             <CheckBox
-              onChange={onEditDossier}
+              onChange={value =>
+                handleEditDossier('myHAP', 'isParkMarker', value)
+              }
               value={dossier.myHAP.isParkMarker}
               classNameContainer="input-home-dossier"
               name="Test Park Marker"
@@ -145,7 +170,7 @@ export default function HomeDossier({
           </div>
           <Textarea
             name="COMMENTAIRE"
-            onChange={onEditDossier}
+            onChange={value => handleEditDossier('diag', 'commentaire', value)}
             value={dossier.diag.commentaire}
             classNameContainer="textArea-container-home-dossier"
             className="textArea-input-home-dossier"
@@ -236,6 +261,7 @@ export default function HomeDossier({
 
       <div className="dossier-valid-content">
         <Button
+          disabled={JSON.stringify(dossier) === JSON.stringify(dossierProps)}
           onClick={handleSave}
           title="Enregistrer"
           className="dossier-button"
