@@ -1,4 +1,4 @@
-.intervention-container .top .circle-container {
+.home-intervention-container .top .circle-container {
   position: relative;
   width: 80px;
   height: 80px;
@@ -11,13 +11,13 @@
   background-color: white;
 }
 
-.intervention-container .top .circle-container p {
-    font-size: 23px;
-    font-weight: bold;
+.home-intervention-container .top .circle-container p {
+  font-size: 23px;
+  font-weight: bold;
 }
 
 
-.intervention-container .bottom h3 {
+.home-intervention-container .bottom h3 {
   margin: 0;
   font-family: normal normal bold 24px/32px Segoe UI;
   font-size: 13px;

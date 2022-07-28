@@ -3,6 +3,10 @@ import { FileType } from './file';
 export interface Dossier {
   diag: Diag;
   myHAP: MyHap;
+  employes: {
+    id: number;
+    name: string;
+  }[];
 }
 
 export interface Diag {
@@ -31,18 +35,24 @@ export interface MyHap {
   isParkMarker: boolean | null;
   typologie: string | null;
   docs: string | null;
-  interventions: [];
+  interventions: Intervention[];
 }
 
 export interface Intervention {
   id: number;
-  dateDebutMission: string | null;
-  dateFinMission: string | null;
+  dateDebutMission: string | null | Date;
+  dateFinMission: string | null | Date;
   idEmployeIntervention: number | null;
   zones: String | null;
   isFirstIntervention: Boolean | null;
   idDossier: number;
   prelevements: Prelevement[];
+}
+
+export interface InterventionForUpdateOrCreate
+  extends Omit<Intervention, 'id' | 'idDossier'> {
+  id?: number;
+  idDossier?: number;
 }
 
 export interface Prelevement {

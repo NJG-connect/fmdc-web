@@ -4,6 +4,8 @@ import Reschedule from './Reschedule';
 import Select from './Select';
 import CardImageDossier from './CardImageDossier';
 import Modal from './Modal';
+import InterventionCollapse from './InterventionCollapse';
+import CardItem from './CardItem';
 
 export {
   ModalContainer,
@@ -12,4 +14,6 @@ export {
   Select,
   CardImageDossier,
   Modal,
+  InterventionCollapse,
+  CardItem,
 };

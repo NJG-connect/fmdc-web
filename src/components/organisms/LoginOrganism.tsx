@@ -31,11 +31,13 @@ export default function LoginOrganism({ onSubmit }: Props) {
           <Input
             name="Nom D'utilisateur"
             type="text"
+            value={infoUser.login}
             onChange={login => setInfoUser({ ...infoUser, login })}
           />
           <Input
             name="Mot de passe"
             type="password"
+            value={infoUser.mdp}
             onChange={mdp => setInfoUser({ ...infoUser, mdp })}
           />
         </div>

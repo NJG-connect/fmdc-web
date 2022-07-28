@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import images from '../../assets/images';
 import { Diag, Dossier, MyHap } from '../../types/Dossier';
 import { FileTypeEnum, FileTypeName } from '../../types/file';
@@ -23,7 +23,9 @@ export default function HomeDossier({
   postOnlyFile,
   onEditDossier,
 }: Props) {
-  const [dossier, setdossier] = useState<Dossier>(dossierProps);
+  const [dossier, setdossier] = useState<Dossier>(
+    JSON.parse(JSON.stringify(dossierProps)),
+  );
   const [fileForAdd, setfileForAdd] = useState<FileWaitForUpload[]>([initFile]);
   const [openModalForFile, setopenModalForFile] = useState(false);
   const [fieldUpdated, setfieldUpdated] = useState<{ [key: string]: any }>({
@@ -65,6 +67,8 @@ export default function HomeDossier({
   };
 
   const handleSave = () => {
+    fieldUpdated.diag.idEmployeIntervention =
+      idInterventionOnDossier.id || null;
     onEditDossier(fieldUpdated);
   };
 
@@ -104,6 +108,51 @@ export default function HomeDossier({
     newFileForAdd[index] = { ...newFileForAdd[index], [nameInput]: event };
     setfileForAdd(newFileForAdd);
   };
+
+  const idInterventionOnDossier = useMemo(() => {
+    const employeExist = dossier.employes.find(
+      el =>
+        dossier.diag.idEmployeIntervention === el.id ||
+        (dossier.diag.idEmployeIntervention as unknown as string) === el.name,
+    );
+    return {
+      id: employeExist?.id,
+      name: employeExist?.name || dossier.diag.idEmployeIntervention,
+    };
+  }, [dossier.employes, dossier.diag.idEmployeIntervention]);
+
+  const buttonIsDisabled = useMemo(() => {
+    let idEmployeInterventionIsValid = !!idInterventionOnDossier.name
+      ? !!idInterventionOnDossier.id
+      : true;
+
+    if (
+      idEmployeInterventionIsValid &&
+      idInterventionOnDossier.id === dossierProps.diag.idEmployeIntervention
+    ) {
+      idEmployeInterventionIsValid = !idEmployeInterventionIsValid;
+    }
+
+    return (
+      !idEmployeInterventionIsValid &&
+      dossierProps.diag.dateCommande === dossier.diag.dateCommande &&
+      dossierProps.myHAP.typologie === dossier.myHAP.typologie &&
+      dossierProps.myHAP.isParkMarker === dossier.myHAP.isParkMarker &&
+      dossierProps.diag.commentaire === dossier.diag.commentaire
+    );
+  }, [
+    dossier.diag.commentaire,
+    dossier.diag.dateCommande,
+    dossier.myHAP.isParkMarker,
+    dossier.myHAP.typologie,
+    dossierProps.diag.commentaire,
+    dossierProps.diag.dateCommande,
+    dossierProps.diag.idEmployeIntervention,
+    dossierProps.myHAP.isParkMarker,
+    dossierProps.myHAP.typologie,
+    idInterventionOnDossier.id,
+    idInterventionOnDossier.name,
+  ]);
 
   return (
     <div className="home-dossier-content">
@@ -147,6 +196,17 @@ export default function HomeDossier({
               value={dossier.myHAP.typologie}
               name="TYPOLOGIE DE MISSION :"
               onChange={el => handleEditDossier('myHAP', 'typologie', el)}
+              classNameContainer="input-home-dossier"
+            />
+            <Input
+              type="text"
+              name="TECHNICIEN"
+              list="dossier-modal-technicien"
+              dataList={dossier.employes}
+              onChange={el =>
+                handleEditDossier('diag', 'idEmployeIntervention', el)
+              }
+              value={idInterventionOnDossier.name}
               classNameContainer="input-home-dossier"
             />
           </div>
@@ -250,18 +310,20 @@ export default function HomeDossier({
               </div>
             ))}
           </div>
-          <Button
-            onClick={handlePostFiles}
-            title="Enregistrer"
-            className="dossier-modal-button"
-            disabled={!fileForAdd.every(el => !!el.type && !!el.file)}
-          />
+          <div>
+            <Button
+              onClick={handlePostFiles}
+              title="Enregistrer"
+              className="dossier-modal-button"
+              disabled={!fileForAdd.every(el => !!el.type && !!el.file)}
+            />
+          </div>
         </div>
       </Modal>
 
       <div className="dossier-valid-content">
         <Button
-          disabled={JSON.stringify(dossier) === JSON.stringify(dossierProps)}
+          disabled={buttonIsDisabled}
           onClick={handleSave}
           title="Enregistrer"
           className="dossier-button"

@@ -5,6 +5,9 @@ import backIcon from './backIcon.svg';
 import addFile from './addFile.svg';
 import closeIcon from './closeIcon.svg';
 import addFileOk from './addFileOk.svg';
+import edit from './edit.svg';
+import arrowDown from './arrowDown.svg';
+import closeIconWhite from './closeIconWhite.svg';
 
 export type ImageType =
   | 'logoAndBrand'
@@ -22,7 +25,10 @@ export type ImageType =
   | 'backIcon'
   | 'closeIcon'
   | 'addFile'
-  | 'addFileOk';
+  | 'addFileOk'
+  | 'arrowDown'
+  | 'edit'
+  | 'closeIconWhite';
 
 const images: { [key in ImageType]: any } = {
   logoAndBrand: require('./logoAndBrand.png'),
@@ -41,6 +47,9 @@ const images: { [key in ImageType]: any } = {
   addFile,
   closeIcon,
   addFileOk,
+  arrowDown,
+  edit,
+  closeIconWhite,
 };
 
 export default images;

@@ -19,7 +19,10 @@ type RootName =
   | 'dossiersForToday'
   | 'searchDossiers'
   | 'dossierById'
-  | 'dossierFileById';
+  | 'dossierFileById'
+  | 'newInterventionByIdDossier'
+  | 'interventionById'
+  | 'interventionFileById';
 
 export default function urlApi(
   rootName: RootName,
@@ -31,6 +34,15 @@ export default function urlApi(
     searchDossiers: `${BASE_URL + DOSSIERS + args[0]}`,
     dossierById: `${BASE_URL + DOSSIER + args[0]}`,
     dossierFileById: `${BASE_URL + DOSSIER + args[0]}/${FILE}`,
+    newInterventionByIdDossier: `${
+      BASE_URL + DOSSIER + args[0]
+    }/${INTERVENTION}`,
+    interventionById: `${BASE_URL + DOSSIER + args[0]}/${
+      INTERVENTION + args[1]
+    }`,
+    interventionFileById: `${BASE_URL + DOSSIER + args[0]}/${
+      INTERVENTION + args[1]
+    }/${FILE}`,
   };
   return url[rootName];
 }

@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import dossierService from '../../api/dossierService';
-import { Dossier } from '../../types/Dossier';
+import interventionService from '../../api/InterventionService';
+import { Dossier, Intervention } from '../../types/Dossier';
 import ToastConfig from '../../types/Toast';
 import { DossierOrganism } from '../organisms';
 
@@ -54,12 +55,55 @@ export default function DossierContainer({ idDossier, goToHome }: Props) {
       toast(data.data, ToastConfig.ERROR);
     }
   };
+  const handleEditIntervention = async (
+    intervention: Intervention,
+    idIntervention: string,
+  ) => {
+    const data = await interventionService.editInterventionById(
+      idDossier!,
+      idIntervention.toString(),
+      intervention,
+    );
+    if (data.succes) {
+      setdossier(data.data as Dossier);
+      toast('Champs mis à jour', ToastConfig.SUCCESS);
+    } else {
+      toast(data.data, ToastConfig.ERROR);
+    }
+  };
+  const handleAddIntervention = async (intervention: any) => {
+    const data = await interventionService.postInterventionById(
+      idDossier!,
+      intervention,
+    );
+    if (data.succes) {
+      setdossier(data.data as Dossier);
+      toast('Intervention Crée', ToastConfig.SUCCESS);
+    } else {
+      toast(data.data, ToastConfig.ERROR);
+    }
+  };
+
+  const onAddorEditIntervention = (intervention: any) => {
+    const {
+      id: idIntervention,
+      prelevements,
+      idDossier,
+      ...fieldsIntervention
+    } = intervention;
+
+    if (idIntervention === undefined) {
+      return handleAddIntervention(fieldsIntervention);
+    }
+    return handleEditIntervention(fieldsIntervention, idIntervention);
+  };
 
   return (
     <DossierOrganism
       dossier={dossier}
       postOnlyFile={postOnlyFile}
       onEditDossier={onEditDossier}
+      onAddorEditIntervention={onAddorEditIntervention}
     />
   );
 }

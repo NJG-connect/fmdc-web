@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './dayIntervention.css';
-import './intervention.css';
+import './dailyIntervention.css';
 
 import { CircleProgressBar, Img, Spinner } from '../atoms';
 import { DossiersForToday } from '../../types/Dossiers';
@@ -12,7 +12,7 @@ interface Props {
 
 const DayInterventions: React.FC<Props> = ({ infosForToday }) => {
   return (
-    <div className="intervention-container">
+    <div className="home-intervention-container">
       {!infosForToday ? (
         <Spinner />
       ) : (

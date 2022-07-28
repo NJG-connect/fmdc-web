@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './reschedule.css';
-import './intervention.css';
+import './dailyIntervention.css';
 
 import { RescheduleFolder, Img, Spinner } from '../atoms';
 
@@ -16,7 +16,7 @@ interface Props {
 
 const Reschedule: React.FC<Props> = ({ data }) => {
   return (
-    <div className="intervention-container">
+    <div className="home-intervention-container">
       {!data ? (
         <Spinner />
       ) : (

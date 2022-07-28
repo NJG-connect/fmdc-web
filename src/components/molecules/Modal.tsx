@@ -26,7 +26,7 @@ export default function Modal({ title, children, isOpen, onClose }: Props) {
           <img
             onClick={close}
             alt="closeModal"
-            src={images.closeIcon}
+            src={images.closeIconWhite}
             className="imgCloseModal"
           />
         </div>

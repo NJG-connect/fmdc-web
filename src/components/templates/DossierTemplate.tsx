@@ -7,7 +7,7 @@ import './dossierTemplate.css';
 import HeaderTemplate from './HeaderTemplate';
 
 interface Props {
-  children: React.ReactNode;
+  children?: React.ReactNode | JSX.Element | null;
   dossier: Dossier | undefined;
   keyMenu?: keyOfMenuIndex;
   selectMenu: (value: keyOfMenuIndex) => void;

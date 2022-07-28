@@ -1,4 +1,4 @@
-.intervention-container {
+.home-intervention-container {
     position: relative;
     width: 400px;
     height: 200px;
@@ -12,7 +12,7 @@
     background-color: white;
 }
 
-.intervention-container:hover {
+.home-intervention-container:hover {
     border-color: #C83130;
     box-shadow: 8px 12px 6px #c8303025;
 }
@@ -25,7 +25,7 @@
     justify-content: space-around;
 }
 
-.intervention-container .img {
+.home-intervention-container .img {
     width: 80px;
     height: 80px;
     background-position: center;
@@ -33,7 +33,7 @@
     background-size: contain;
 }
 
-.intervention-container .bottom {
+.home-intervention-container .bottom {
     width: 90%;
     height: 30%;
     display: flex;
@@ -42,17 +42,17 @@
     align-items: center;
 }
 
-.intervention-container .bottom h1 {
+.home-intervention-container .bottom h1 {
     margin: 0;
     font-family: normal normal bold 24px/32px Segoe UI;
 }
 
-.intervention-container .bottom h1 {
+.home-intervention-container .bottom h1 {
     font-size: 20px;
     color: #000000A8;
 }
 
-.intervention-container .bottom h1 span {
+.home-intervention-container .bottom h1 span {
     font-size: 35px;
     margin-right: 2rem;
 }

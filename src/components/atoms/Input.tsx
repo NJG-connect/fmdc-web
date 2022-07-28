@@ -5,12 +5,14 @@ import { IconButton } from './';
 
 interface Props {
   name: string;
-  type: 'text' | 'password' | 'number' | 'datetime-local';
+  type: 'text' | 'password' | 'number' | 'date';
   onChange: (value: string) => void;
   className?: string;
   classNameContainer?: string;
   placeholder?: string;
   value?: string | number | null;
+  list?: string;
+  dataList?: { name: string; id: number | string }[];
 }
 
 const Input: React.FC<Props> = ({
@@ -21,6 +23,8 @@ const Input: React.FC<Props> = ({
   classNameContainer = '',
   placeholder,
   value,
+  list,
+  dataList = [],
 }) => {
   const [inputType, setInputType] = useState<
     'text' | 'password' | 'number' | 'date' | 'datetime-local'
@@ -41,7 +45,15 @@ const Input: React.FC<Props> = ({
         onChange={e => onChange(e.target.value)}
         className={`${className} input`}
         placeholder={placeholder}
+        list={list}
       />
+      {!!dataList.length && (
+        <datalist id={list}>
+          {dataList.map((el, index) => (
+            <option key={index} value={el.name} />
+          ))}
+        </datalist>
+      )}
       {type === 'password' && (
         <IconButton
           img={eye}
