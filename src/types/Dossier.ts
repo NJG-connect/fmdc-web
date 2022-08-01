@@ -34,7 +34,7 @@ export interface MyHap {
   id: number;
   isParkMarker: boolean | null;
   typologie: string | null;
-  docs: string | null;
+  docs: FileType[];
   interventions: Intervention[];
 }
 

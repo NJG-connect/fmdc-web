@@ -8,6 +8,8 @@ import addFileOk from './addFileOk.svg';
 import edit from './edit.svg';
 import arrowDown from './arrowDown.svg';
 import closeIconWhite from './closeIconWhite.svg';
+import seeDocument from './seeDocument.svg';
+import folderIcon from './folderIcon.svg';
 
 export type ImageType =
   | 'logoAndBrand'
@@ -28,7 +30,9 @@ export type ImageType =
   | 'addFileOk'
   | 'arrowDown'
   | 'edit'
-  | 'closeIconWhite';
+  | 'closeIconWhite'
+  | 'seeDocument'
+  | 'folderIcon';
 
 const images: { [key in ImageType]: any } = {
   logoAndBrand: require('./logoAndBrand.png'),
@@ -50,6 +54,8 @@ const images: { [key in ImageType]: any } = {
   arrowDown,
   edit,
   closeIconWhite,
+  seeDocument,
+  folderIcon,
 };
 
 export default images;

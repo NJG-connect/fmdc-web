@@ -16,11 +16,26 @@
   align-items: center;
   display: flex;
   margin: 0px 10px;
+  cursor: pointer;
+  overflow: hidden;
+  word-break: break-all;
 }
 
 .intervention-prelevement-row:first-child {
   font-weight: bold;
 }
+
+.intervention-card-title-prelevement {
+  display: flex;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.intervention-card-title-prelevement .intervention-prelevement-row:first-child {
+  font-weight: normal;
+
+}
+
 
 .intervention-prelevement-icon {
   transform: rotate(-90deg);
@@ -57,5 +72,11 @@
 @media only screen and (max-width: 1080px) {
   .intervention-container-prelevement {
     margin: 0;
+  }
+
+  .intervention-card-title-prelevement {
+
+    overflow: hidden;
+    font-size: 14px;
   }
 }

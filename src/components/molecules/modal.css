@@ -52,6 +52,7 @@
   justify-content: space-between;
   display: flex;
   padding-right: 15px;
+  word-break: break-all;
 }
 
 .imgCloseModal {

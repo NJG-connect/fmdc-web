@@ -1,0 +1,169 @@
+.docsDossier-container {
+  margin: 40px 90px 0;
+}
+
+.docDossier-row {
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin: 0px 10px;
+  cursor: pointer;
+  overflow: hidden;
+  word-break: break-all;
+}
+
+.docDossier-row:first-child {
+  font-weight: bold;
+}
+
+.docDossier-card-title {
+  display: flex;
+  margin: 20px 0;
+  margin-right: calc(calc(8 * 4px) + calc(30 * 2px));
+  text-align: center;
+}
+
+.docDossier-card-title div {
+  cursor: default;
+}
+
+.docDossier-card-title .docDossier-row:first-child {
+  font-weight: normal;
+}
+
+.docDossier-icon-container {
+  margin: auto;
+}
+
+.docDossier-icon {
+  height: 30px;
+  width: 30px;
+  margin: auto 8px
+}
+
+
+
+.docsDossier-modal-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.docsDossier-modal-section-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.docsDossier-modal-section-container {
+  border: 1px solid #707070;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.docsDossier-modal-select {
+  width: 125px;
+  height: 50px;
+  border: 1px dashed #707070;
+  border-radius: 16px;
+  margin-left: 20px;
+}
+
+.docsDossier-modal-img-add {
+  object-fit: contain;
+  cursor: pointer;
+}
+
+.docsDossier-add-file-image-input {
+  display: block;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+.docsDossier-modal-textArea {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin: 30px 0;
+}
+
+.docsDossier-modal-section {
+  display: flex;
+}
+
+.docsDossier-modal-add-more-file {
+  border: 1px solid #707070;
+  width: 145px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 16px;
+  display: flex;
+  height: 50px;
+  margin: 20px auto;
+  cursor: pointer;
+}
+
+.docsDossier-modal-add-file-name {
+  word-break: break-all;
+  text-align: center;
+}
+
+.docDossier-card-for-add-file {
+  border-style: dashed;
+  align-items: center;
+}
+
+.docDossier-icon-addFile {
+  height: 40px;
+  width: 40px;
+}
+
+.docsDossier-modal-button {
+  margin: 25px auto 0;
+  max-width: 700px;
+}
+
+@media only screen and (max-width: 1080px) {
+  .docsDossier-container {
+    margin: 0;
+  }
+
+  .docDossier-card-title {
+
+    overflow: hidden;
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 1080px) {
+
+  .docsDossier-modal-section-top {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .docsDossier-modal-section {
+    margin-bottom: 20px;
+  }
+
+  .docsDossier-modal-add-more-file {
+    margin-top: 0px;
+  }
+
+}
+
+@media only screen and (max-width: 385px) {
+  .docsDossier-modal-section {
+    flex-direction: column;
+  }
+
+  .docsDossier-modal-select {
+    margin-left: 0;
+  }
+}

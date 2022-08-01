@@ -39,6 +39,7 @@ export interface FileType {
   emplacement?: string;
   link: string;
   date?: Date;
+  commentaire?: string;
 }
 
 export const allFormatFile = [

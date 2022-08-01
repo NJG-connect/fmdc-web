@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { Dossier, keyOfMenuIndex, menuIndex } from '../../types/Dossier';
 import { Spinner } from '../atoms';
 import { DossierTemplate } from '../templates';
-import { HomeDossier, Intervention } from '../views';
+import { DocsDossier, HomeDossier, Intervention } from '../views';
 import './dossierOrganism.css';
 
 interface Props {
@@ -18,7 +18,7 @@ export default function DossierOrganism({
   onEditDossier,
   onAddorEditIntervention,
 }: Props) {
-  const [keyMenu, setkeyMenu] = useState<keyOfMenuIndex>(menuIndex.dossier);
+  const [keyMenu, setkeyMenu] = useState<keyOfMenuIndex>(menuIndex.docs);
 
   const printSection = useCallback(() => {
     if (!dossier) {
@@ -37,6 +37,14 @@ export default function DossierOrganism({
         <Intervention
           dossier={dossier}
           onAddorEditIntervention={onAddorEditIntervention}
+        />
+      );
+    } else if (keyMenu === menuIndex.docs) {
+      return (
+        <DocsDossier
+          dossier={dossier}
+          postOnlyFile={postOnlyFile}
+          onEditDossier={onEditDossier}
         />
       );
     }

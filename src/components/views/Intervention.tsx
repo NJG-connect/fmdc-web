@@ -1,21 +1,27 @@
 import React, { useMemo, useState } from 'react';
 import images from '../../assets/images';
-import {
+import type {
   Dossier,
   Intervention,
   InterventionForUpdateOrCreate,
+  Prelevement as PrelevementType,
 } from '../../types/Dossier';
 import { formatDateForInput } from '../../utils/date';
 import { formatIdPrelevement } from '../../utils/formatIdPrelevement';
 import { Button, Input } from '../atoms';
 import { CardItem, InterventionCollapse, Modal } from '../molecules';
 import './intervention.css';
+import Prelevement from './Prelevement';
 
 interface Props {
   dossier: Dossier;
   onAddorEditIntervention: (value: any) => void;
 }
-const INIT_MODAL = { isOpen: false, interventionIndex: undefined };
+const INIT_MODAL_INTERVENTION = { isOpen: false, interventionIndex: undefined };
+const INIT_MODAL_PRELEVEMENT = {
+  isOpen: false,
+  prelevement: undefined,
+};
 const INIT_INTERVENTION: InterventionForUpdateOrCreate = {
   dateDebutMission: null,
   dateFinMission: null,
@@ -29,11 +35,19 @@ export default function InterventionComponent({
   dossier,
   onAddorEditIntervention,
 }: Props) {
-  const [modalInfo, setmodalInfo] = useState<{
+  // for EDIT| Create Intervention Modal
+  const [modalInfoForIntervention, setmodalInfoForIntervention] = useState<{
     isOpen: boolean;
     interventionIndex?: number;
-  }>(INIT_MODAL);
+  }>(INIT_MODAL_INTERVENTION);
 
+  // for Prelevement Modal
+  const [modalInfoForPrelevement, setmodalInfoForPrelevement] = useState<{
+    isOpen: boolean;
+    prelevement?: PrelevementType;
+  }>(INIT_MODAL_PRELEVEMENT);
+
+  // state for change Intervention
   const [newIntervention, setnewIntervention] =
     useState<InterventionForUpdateOrCreate>(INIT_INTERVENTION);
 
@@ -100,7 +114,7 @@ export default function InterventionComponent({
     }
     formatNewIntervention.idEmployeIntervention =
       idInterventionOnDossier.id || null;
-    setmodalInfo(INIT_MODAL);
+    setmodalInfoForIntervention(INIT_MODAL_INTERVENTION);
     onAddorEditIntervention(formatNewIntervention);
   };
 
@@ -108,15 +122,15 @@ export default function InterventionComponent({
     <div className="intervention-container">
       <Modal
         title={
-          modalInfo.interventionIndex === undefined
+          modalInfoForIntervention.interventionIndex === undefined
             ? "Création d'une Intervention"
             : 'Modification Intervention'
         }
         onClose={() => {
-          setmodalInfo(INIT_MODAL);
+          setmodalInfoForIntervention(INIT_MODAL_INTERVENTION);
           setnewIntervention(INIT_INTERVENTION);
         }}
-        isOpen={modalInfo.isOpen}>
+        isOpen={modalInfoForIntervention.isOpen}>
         <div className="modal-intervention-container">
           <div className="modal-intervention-content">
             <Input
@@ -154,13 +168,26 @@ export default function InterventionComponent({
             <Button
               onClick={handleAddorEditIntervention}
               title={
-                modalInfo.interventionIndex === 0 ? 'Enregistrer' : 'Modifier'
+                modalInfoForIntervention.interventionIndex === 0
+                  ? 'Enregistrer'
+                  : 'Modifier'
               }
               className="intervention-modal-button"
               disabled={buttonIsDisabled}
             />
           </div>
         </div>
+      </Modal>
+
+      <Modal
+        title={formatIdPrelevement(modalInfoForPrelevement.prelevement?.id)}
+        onClose={() => {
+          setmodalInfoForPrelevement(INIT_MODAL_PRELEVEMENT);
+        }}
+        isOpen={modalInfoForPrelevement.isOpen}>
+        {modalInfoForPrelevement.prelevement ? (
+          <Prelevement prelevement={modalInfoForPrelevement.prelevement} />
+        ) : null}
       </Modal>
       {dossier.myHAP.interventions &&
         dossier.myHAP.interventions.map(
@@ -171,7 +198,7 @@ export default function InterventionComponent({
                   ...INIT_INTERVENTION,
                   ...dossier.myHAP.interventions[indexIntervention],
                 });
-                setmodalInfo({
+                setmodalInfoForIntervention({
                   isOpen: true,
                   interventionIndex: indexIntervention,
                 });
@@ -185,10 +212,23 @@ export default function InterventionComponent({
               className="intervention-container-prelevement"
               key={indexIntervention}>
               <>
+                <div className="intervention-card-title-prelevement">
+                  <div className="intervention-prelevement-row">
+                    N° PRÉLÈVEMENT
+                  </div>
+                  <div className="intervention-prelevement-row">DATE</div>
+                  <div className="intervention-prelevement-row">TECHNICIEN</div>
+                </div>
                 {intervention.prelevements &&
                   intervention.prelevements.map(
                     (prelevement, indexPrelevement) => (
                       <CardItem
+                        onClick={() =>
+                          setmodalInfoForPrelevement({
+                            isOpen: true,
+                            prelevement: prelevement,
+                          })
+                        }
                         key={`${indexIntervention}-${indexPrelevement}`}>
                         <label
                           title={`${formatIdPrelevement(prelevement.id)}`}
@@ -231,7 +271,7 @@ export default function InterventionComponent({
         <Button
           onClick={() => {
             setnewIntervention(INIT_INTERVENTION);
-            setmodalInfo({ isOpen: true });
+            setmodalInfoForIntervention({ isOpen: true });
           }}
           title="Ajouter une Intervention"
           className="intervention-modal-button"
