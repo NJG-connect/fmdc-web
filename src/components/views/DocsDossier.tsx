@@ -63,12 +63,14 @@ export default function DocsDossier({
   const handlePostFiles = () => {
     const haveFile = fileForAdd.some(el => el.addNewFile);
     const formData = new FormData();
-    let typeFileForUpdate: { [key: string]: string } = {};
+    let typeFileForUpdate: {
+      [key: string]: { [key in string]: string };
+    } = {};
     let fieldUpdate: any = { myHAP: { docs: [] } };
     fileForAdd.forEach((oneFile, index) => {
       if (oneFile.addNewFile) {
         formData.append(`files[${index}]`, oneFile.file!, oneFile.file!.name!);
-        typeFileForUpdate[oneFile.file!.name!] = oneFile.type!;
+        typeFileForUpdate[oneFile.file!.name!] = { type: oneFile.type! };
       }
 
       let newValue: { [key: string]: string } = {};
@@ -76,7 +78,14 @@ export default function DocsDossier({
       if (oneFile.file && !!oneFile.file.name) {
         newValue['name'] = oneFile.file.name;
         if (!!oneFile.commentaire) {
-          newValue['commentaire'] = oneFile.commentaire;
+          if (oneFile.addNewFile) {
+            typeFileForUpdate[oneFile.file!.name!] = {
+              ...typeFileForUpdate[oneFile.file!.name!],
+              commentaire: oneFile.commentaire,
+            };
+          } else {
+            newValue['commentaire'] = oneFile.commentaire;
+          }
         }
         if (oneFile.addNewFile === false && !!oneFile.type) {
           newValue['type'] = oneFile.type;
@@ -84,10 +93,14 @@ export default function DocsDossier({
       }
       Object.keys(newValue).length > 1 && fieldUpdate.myHAP.docs.push(newValue);
     });
-    haveFile && formData.append('type', JSON.stringify(typeFileForUpdate));
-    fieldUpdate.myHAP.docs.length > 0 && onEditDossier(fieldUpdate);
 
-    haveFile && postOnlyFile(formData);
+    haveFile && formData.append('infoFiles', JSON.stringify(typeFileForUpdate));
+    if (haveFile) {
+      haveFile && postOnlyFile(formData);
+    } else {
+      fieldUpdate.myHAP.docs.length > 0 && onEditDossier(fieldUpdate);
+    }
+
     setfileForAdd([INIT_FILE]);
     setmodalInfoForDoc(INIT_MODAL_DOC);
   };

@@ -74,12 +74,12 @@ export default function HomeDossier({
 
   const handlePostFiles = () => {
     const formData = new FormData();
-    let typeFileForUpdate: { [key: string]: string } = {};
+    let typeFileForUpdate: { [key: string]: { type: string } } = {};
     fileForAdd.forEach((oneFile, index) => {
       formData.append(`files[${index}]`, oneFile.file!, oneFile.file!.name!);
-      typeFileForUpdate[oneFile.file!.name!] = oneFile.type!;
+      typeFileForUpdate[oneFile.file!.name!] = { type: oneFile.type! };
     });
-    formData.append('type', JSON.stringify(typeFileForUpdate));
+    formData.append('infoFiles', JSON.stringify(typeFileForUpdate));
     postOnlyFile(formData);
   };
 
