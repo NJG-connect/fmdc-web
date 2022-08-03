@@ -67,8 +67,13 @@ export default function HomeDossier({
   };
 
   const handleSave = () => {
-    fieldUpdated.diag.idEmployeIntervention =
-      idInterventionOnDossier.id || null;
+    // if idEmployeIntervention update field with id than name of employe
+    if (
+      idInterventionOnDossier.id !== dossierProps.diag.idEmployeIntervention
+    ) {
+      fieldUpdated.diag.idEmployeIntervention =
+        idInterventionOnDossier.id || null;
+    }
     onEditDossier(fieldUpdated);
   };
 

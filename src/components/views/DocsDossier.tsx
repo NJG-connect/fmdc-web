@@ -67,6 +67,7 @@ export default function DocsDossier({
       [key: string]: { [key in string]: string };
     } = {};
     let fieldUpdate: any = { myHAP: { docs: [] } };
+
     fileForAdd.forEach((oneFile, index) => {
       if (oneFile.addNewFile) {
         formData.append(`files[${index}]`, oneFile.file!, oneFile.file!.name!);
@@ -126,7 +127,6 @@ export default function DocsDossier({
     };
     setfileForAdd(newFileForAdd);
     let [oneFile] = event.target.files;
-
     if (modalInfoForDoc.docsIndex !== undefined) {
       const newFile = new File(
         [oneFile],
@@ -134,7 +134,6 @@ export default function DocsDossier({
       );
       oneFile = newFile;
     }
-
     onChangeOneFile(indexOfInput, 'file', oneFile);
   };
 
