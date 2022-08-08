@@ -57,6 +57,7 @@ export interface InterventionForUpdateOrCreate
 
 export interface Prelevement {
   id: number;
+  numero: number | null;
   date: Date | null;
   emplacement: string | null;
   latitude: string | null;
@@ -83,6 +84,9 @@ export interface Couche {
   amiante: boolean | null;
   materiaux: string | null;
   HAP: string | null;
+  numero: number | null;
+  laboratoire: string | null;
+  bonCommandeLabo: string | null;
   idPrelevement: number | null;
 }
 

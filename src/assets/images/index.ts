@@ -10,6 +10,8 @@ import arrowDown from './arrowDown.svg';
 import closeIconWhite from './closeIconWhite.svg';
 import seeDocument from './seeDocument.svg';
 import folderIcon from './folderIcon.svg';
+import checkBoxNotSelected from './checkBoxNotSelected.svg';
+import checkBoxSelected from './checkBoxSelected.svg';
 
 export type ImageType =
   | 'logoAndBrand'
@@ -32,7 +34,9 @@ export type ImageType =
   | 'edit'
   | 'closeIconWhite'
   | 'seeDocument'
-  | 'folderIcon';
+  | 'folderIcon'
+  | 'checkBoxNotSelected'
+  | 'checkBoxSelected';
 
 const images: { [key in ImageType]: any } = {
   logoAndBrand: require('./logoAndBrand.png'),
@@ -56,6 +60,8 @@ const images: { [key in ImageType]: any } = {
   closeIconWhite,
   seeDocument,
   folderIcon,
+  checkBoxNotSelected,
+  checkBoxSelected,
 };
 
 export default images;

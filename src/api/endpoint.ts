@@ -13,6 +13,7 @@ export const INTERVENTION = 'intervention/';
 export const PRELEVEMENT = 'prelevement/';
 export const COUCHE = 'couches/';
 export const FILE = 'file/';
+export const LABO = 'labo/';
 
 type RootName =
   | 'login'
@@ -22,7 +23,8 @@ type RootName =
   | 'dossierFileById'
   | 'newInterventionByIdDossier'
   | 'interventionById'
-  | 'interventionFileById';
+  | 'interventionFileById'
+  | 'sendCouchetoLabo';
 
 export default function urlApi(
   rootName: RootName,
@@ -43,6 +45,7 @@ export default function urlApi(
     interventionFileById: `${BASE_URL + DOSSIER + args[0]}/${
       INTERVENTION + args[1]
     }/${FILE}`,
+    sendCouchetoLabo: `${BASE_URL + LABO}dossier/${args[0]}/couches`,
   };
   return url[rootName];
 }

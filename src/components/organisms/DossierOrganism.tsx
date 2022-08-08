@@ -1,8 +1,9 @@
 import React, { useState, useCallback } from 'react';
 import { Dossier, keyOfMenuIndex, menuIndex } from '../../types/Dossier';
+import { laboratoireType } from '../../types/laboratoire';
 import { Spinner } from '../atoms';
 import { DossierTemplate } from '../templates';
-import { DocsDossier, HomeDossier, Intervention } from '../views';
+import { DocsDossier, HomeDossier, Intervention, LaboDossier } from '../views';
 import './dossierOrganism.css';
 
 interface Props {
@@ -10,6 +11,10 @@ interface Props {
   postOnlyFile: (files: any) => void;
   onEditDossier: (values: any) => void;
   onAddorEditIntervention: (intervention: any) => void;
+  onSendCoucheForLabo: (
+    coucheIds: { [key in number]: number[] },
+    contrat: { laboratoire: laboratoireType; contrat?: string },
+  ) => void;
 }
 
 export default function DossierOrganism({
@@ -17,8 +22,9 @@ export default function DossierOrganism({
   postOnlyFile,
   onEditDossier,
   onAddorEditIntervention,
+  onSendCoucheForLabo,
 }: Props) {
-  const [keyMenu, setkeyMenu] = useState<keyOfMenuIndex>(menuIndex.dossier);
+  const [keyMenu, setkeyMenu] = useState<keyOfMenuIndex>(menuIndex.lab);
 
   const printSection = useCallback(() => {
     if (!dossier) {
@@ -47,8 +53,22 @@ export default function DossierOrganism({
           onEditDossier={onEditDossier}
         />
       );
+    } else if (keyMenu === menuIndex.lab) {
+      return (
+        <LaboDossier
+          dossier={dossier}
+          onSendCoucheForLabo={onSendCoucheForLabo}
+        />
+      );
     }
-  }, [dossier, keyMenu, onEditDossier, onAddorEditIntervention, postOnlyFile]);
+  }, [
+    dossier,
+    keyMenu,
+    postOnlyFile,
+    onEditDossier,
+    onAddorEditIntervention,
+    onSendCoucheForLabo,
+  ]);
 
   return (
     <DossierTemplate

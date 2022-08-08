@@ -2,7 +2,9 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import dossierService from '../../api/dossierService';
 import interventionService from '../../api/InterventionService';
+import laboService from '../../api/laboService';
 import { Dossier, Intervention } from '../../types/Dossier';
+import { laboratoireType } from '../../types/laboratoire';
 import ToastConfig from '../../types/Toast';
 import { DossierOrganism } from '../organisms';
 
@@ -98,12 +100,29 @@ export default function DossierContainer({ idDossier, goToHome }: Props) {
     return handleEditIntervention(fieldsIntervention, idIntervention);
   };
 
+  const onSendCoucheForLabo = async (
+    couchesIdsByPrelevementIds: { [key in number]: number[] },
+    contrat: { laboratoire: laboratoireType; contrat?: string },
+  ) => {
+    const data = await laboService.sendCouchetoLabo(idDossier!, {
+      couchesIdsByPrelevementIds,
+      contrat,
+    });
+    if (data.succes) {
+      setdossier(data.data as Dossier);
+      toast('Couche envoyé ! ', ToastConfig.SUCCESS);
+    } else {
+      toast(data.data, ToastConfig.ERROR);
+    }
+  };
+
   return (
     <DossierOrganism
       dossier={dossier}
       postOnlyFile={postOnlyFile}
       onEditDossier={onEditDossier}
       onAddorEditIntervention={onAddorEditIntervention}
+      onSendCoucheForLabo={onSendCoucheForLabo}
     />
   );
 }
