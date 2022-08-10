@@ -24,7 +24,7 @@ export default function DossierOrganism({
   onAddorEditIntervention,
   onSendCoucheForLabo,
 }: Props) {
-  const [keyMenu, setkeyMenu] = useState<keyOfMenuIndex>(menuIndex.lab);
+  const [keyMenu, setkeyMenu] = useState<keyOfMenuIndex>(menuIndex.dossier);
 
   const printSection = useCallback(() => {
     if (!dossier) {

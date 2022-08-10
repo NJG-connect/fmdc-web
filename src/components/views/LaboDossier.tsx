@@ -4,8 +4,8 @@ import { Dossier, Intervention } from '../../types/Dossier';
 import { laboratoireType } from '../../types/laboratoire';
 import { formatDateForInput } from '../../utils/date';
 import { formatIdPrelevement } from '../../utils/formatIdPrelevement';
-import { Button } from '../atoms';
-import { CardItem } from '../molecules';
+import { Button, Input } from '../atoms';
+import { CardItem, Modal } from '../molecules';
 import './laboDossier.css';
 
 interface Props {
@@ -16,12 +16,31 @@ interface Props {
   ) => void;
 }
 
+const INIT_MODAL_LABO = {
+  isOpen: false,
+  contrat: { laboratoire: '', contrat: '' },
+};
+
+const DATA_LIST_LABORATOIRE = [
+  { id: laboratoireType.ITGA, name: laboratoireType.ITGA },
+];
+
 export default function LaboDossier({ dossier, onSendCoucheForLabo }: Props) {
   const [idCoucheSelected, setidCoucheSelected] = useState<
-    { coucheId: number; PrelevementId: number }[]
+    { coucheId: number; prelevementId: number; coucheNumero: number }[]
   >([]);
 
-  const onSelectCouche = (coucheId: number, PrelevementId: number) => {
+  // for valid Modal
+  const [modalInfoForLabo, setmodalInfoForLabo] = useState<{
+    isOpen: boolean;
+    contrat: { laboratoire: string | laboratoireType; contrat: string };
+  }>(INIT_MODAL_LABO);
+
+  const onSelectCouche = (
+    coucheId: number,
+    prelevementId: number,
+    coucheNumero: number,
+  ) => {
     let newIdCoucheSelected = [...idCoucheSelected];
     if (idCoucheSelected.map(el => el.coucheId).includes(coucheId)) {
       newIdCoucheSelected = idCoucheSelected.filter(
@@ -30,7 +49,7 @@ export default function LaboDossier({ dossier, onSendCoucheForLabo }: Props) {
     } else {
       newIdCoucheSelected = [
         ...newIdCoucheSelected,
-        { coucheId, PrelevementId },
+        { coucheId, prelevementId, coucheNumero },
       ];
     }
     setidCoucheSelected(newIdCoucheSelected);
@@ -39,27 +58,96 @@ export default function LaboDossier({ dossier, onSendCoucheForLabo }: Props) {
   const handleSendCoucheForLabo = () => {
     const idCoucheSelectedTemp = [...idCoucheSelected];
 
-    const idCouchesWithPrelevementId: { [key in number]: number[] } =
+    const idCouchesWithprelevementId: { [key in number]: number[] } =
       idCoucheSelectedTemp.reduce(
         (prev: { [key in number]: number[] }, current) => ({
           ...prev,
-          [current.PrelevementId]: Object.keys(prev).includes(
-            current.PrelevementId.toString(),
+          [current.prelevementId]: Object.keys(prev).includes(
+            current.prelevementId.toString(),
           )
-            ? [...prev[current.PrelevementId], current.coucheId]
+            ? [...prev[current.prelevementId], current.coucheId]
             : [current.coucheId],
         }),
         {},
       );
 
-    onSendCoucheForLabo(idCouchesWithPrelevementId, {
-      laboratoire: laboratoireType.ITGA,
+    onSendCoucheForLabo(idCouchesWithprelevementId, {
+      laboratoire: modalInfoForLabo.contrat.laboratoire as laboratoireType,
+      // contrat: modalInfoForLabo.contrat.contrat
     });
+    setmodalInfoForLabo(INIT_MODAL_LABO);
     setidCoucheSelected([]);
   };
 
   return (
     <div className="labo-container">
+      <Modal
+        isOpen={modalInfoForLabo.isOpen}
+        onClose={() => {
+          setmodalInfoForLabo(INIT_MODAL_LABO);
+        }}
+        title="ENVOI PRÉLEVEMENT(S)">
+        <div className="modal-labo-container">
+          <div className="modal-labo-content">
+            <p>
+              {idCoucheSelected.map(
+                (el, index) =>
+                  `${formatIdPrelevement(el.prelevementId)}-${el.coucheNumero}${
+                    idCoucheSelected.length - 1 !== index ? ', ' : ''
+                  }`,
+              )}
+            </p>
+
+            <Input
+              type="text"
+              name="LABORATOIRE"
+              list="labo-modal-laboratoire"
+              dataList={DATA_LIST_LABORATOIRE}
+              onChange={el =>
+                setmodalInfoForLabo({
+                  ...modalInfoForLabo,
+                  contrat: {
+                    ...modalInfoForLabo.contrat,
+                    laboratoire: el,
+                  },
+                })
+              }
+              value={modalInfoForLabo.contrat?.laboratoire}
+              classNameContainer="modal-labo-input"
+            />
+
+            {/* <Input
+              type="text"
+              name="CONTRAT"
+              list="labo-modal-contrat"
+              dataList={dossier.employes}
+              onChange={el =>
+                setmodalInfoForLabo({
+                  ...modalInfoForLabo,
+                  contrat: {
+                    laboratoire: modalInfoForLabo.contrat?.laboratoire,
+                    contrat: el,
+                  },
+                })
+              }
+              value={modalInfoForLabo.contrat?.contrat}
+              classNameContainer="modal-labo-input"
+            /> */}
+          </div>
+          <div>
+            <Button
+              onClick={handleSendCoucheForLabo}
+              title="ENVOYER"
+              className="labo-modal-button"
+              disabled={
+                !DATA_LIST_LABORATOIRE.map(el => el.id).includes(
+                  modalInfoForLabo.contrat.laboratoire as laboratoireType,
+                )
+              }
+            />
+          </div>
+        </div>
+      </Modal>
       <div className="labo-container-content">
         <div className="labo-couche-card-title">
           <div className="labo-couche-row">N° COUCHE</div>
@@ -78,7 +166,11 @@ export default function LaboDossier({ dossier, onSendCoucheForLabo }: Props) {
                       prelevement.couches.map((couche, indexCouche) => (
                         <CardItem
                           onClick={() =>
-                            onSelectCouche(couche.id, prelevement.id)
+                            onSelectCouche(
+                              couche.id,
+                              prelevement.id,
+                              couche.numero!,
+                            )
                           }
                           key={`${indexIntervention}-${indexPrelevement}-${indexCouche}`}>
                           <img
@@ -93,13 +185,13 @@ export default function LaboDossier({ dossier, onSendCoucheForLabo }: Props) {
                             }
                           />
                           <label
-                            title={`${formatIdPrelevement(prelevement.id)}-${
-                              indexCouche + 1
-                            }`}
+                            title={`${formatIdPrelevement(
+                              prelevement.id,
+                            )}-${couche.numero!}`}
                             className="labo-couche-row">
-                            {`${formatIdPrelevement(prelevement.id)}-${
-                              indexCouche + 1
-                            }`}
+                            {`${formatIdPrelevement(
+                              prelevement.id,
+                            )}-${couche.numero!}`}
                           </label>
                           <label
                             title={`${prelevement.date?.toString() || '-'}`}
@@ -135,7 +227,10 @@ export default function LaboDossier({ dossier, onSendCoucheForLabo }: Props) {
       </div>
       <div>
         <Button
-          onClick={handleSendCoucheForLabo}
+          onClick={() => {
+            setmodalInfoForLabo({ ...INIT_MODAL_LABO, isOpen: true });
+          }}
+          disabled={!idCoucheSelected.length}
           title="ENVOI LABO"
           className="labo-button"
         />
