@@ -77,6 +77,12 @@ export interface Prelevement {
   couches: Couche[];
 }
 
+export interface PrelevementForUpdateOrCreate
+  extends Omit<Prelevement, 'id' | 'idIntervention'> {
+  id?: number;
+  idIntervention?: number;
+}
+
 export interface Couche {
   id: number;
   taille: string | null;
