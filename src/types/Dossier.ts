@@ -90,9 +90,13 @@ export interface Couche {
   amiante: boolean | null;
   materiaux: string | null;
   HAP: string | null;
+  liant: boolean | null;
+  granulat: boolean | null;
+  parkMakerImage: string | null;
   numero: number | null;
   laboratoire: string | null;
   bonCommandeLabo: string | null;
+  sendInfoLaboAt: null | Date;
   idPrelevement: number | null;
 }
 
@@ -139,6 +143,6 @@ export type keyOfMenuIndex = keyof typeof menuIndex;
 export const menuForDossier: { [key in keyOfMenuIndex]: string } = {
   [menuIndex.dossier]: 'Dossier',
   [menuIndex.intervention]: 'Intervention',
-  [menuIndex.lab]: 'Lab / Résultat',
-  [menuIndex.docs]: 'Docs / Rapports',
+  [menuIndex.lab]: 'Laboratoire / Résultats',
+  [menuIndex.docs]: 'Documents / Rapports',
 };

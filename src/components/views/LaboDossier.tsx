@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import images from '../../assets/images';
-import { Dossier, Intervention } from '../../types/Dossier';
+import { Couche, Dossier } from '../../types/Dossier';
 import { laboratoireType } from '../../types/laboratoire';
 import { formatDateForInput } from '../../utils/date';
 import { formatIdPrelevement } from '../../utils/formatIdPrelevement';
 import { Button, Input } from '../atoms';
-import { CardItem, Modal } from '../molecules';
+import { CardItem, InterventionCollapse, Modal } from '../molecules';
 import './laboDossier.css';
 
 interface Props {
@@ -77,6 +77,83 @@ export default function LaboDossier({ dossier, onSendCoucheForLabo }: Props) {
     });
     setmodalInfoForLabo(INIT_MODAL_LABO);
     setidCoucheSelected([]);
+  };
+
+  const couchesBySendLabo: {
+    [x: string]: Couche[];
+  } = useMemo(() => {
+    let allCouches: Couche[] = [];
+    dossier.myHAP.interventions.forEach(intervention => {
+      intervention.prelevements &&
+        intervention.prelevements.forEach(prelevement => {
+          if (prelevement.couches) {
+            allCouches = [...allCouches, ...prelevement.couches];
+          }
+        });
+    });
+
+    const couchesFormated = allCouches.reduce(
+      (prev: any, current: any) => ({
+        ...prev,
+        [current.bonCommandeLabo]: Object.keys(prev).includes(
+          current.bonCommandeLabo || 'null',
+        )
+          ? [...prev[current.bonCommandeLabo], current]
+          : [current],
+      }),
+      {},
+    );
+    const { null: notSendValue = [], ...rest } = couchesFormated;
+    return { notSendValue, ...rest };
+  }, [dossier]);
+
+  const printCardItem = (couche: Couche, hideSelect?: boolean) => {
+    return (
+      <CardItem
+        onClick={() =>
+          !hideSelect &&
+          onSelectCouche(couche.id, couche.idPrelevement!, couche.numero!)
+        }
+        key={`${couche.id}`}>
+        {!hideSelect ? (
+          <img
+            className="labo-couche-img-checkbox"
+            alt="checked"
+            src={
+              idCoucheSelected.map(el => el.coucheId).includes(couche.id)
+                ? images.checkBoxSelected
+                : images.checkBoxNotSelected
+            }
+          />
+        ) : (
+          <div className="labo-couche-img-checkbox" />
+        )}
+        <label
+          title={`${formatIdPrelevement(
+            couche.idPrelevement!,
+          )}-${couche.numero!}`}
+          className="labo-couche-row">
+          {`${formatIdPrelevement(couche.idPrelevement!)}-${couche.numero!}`}
+        </label>
+        <label title={couche.laboratoire || ''} className="labo-couche-row">
+          {`${couche.laboratoire || '-'}`}
+        </label>
+        <label
+          title={(couche.liant && 'Oui') || ''}
+          className="labo-couche-row">
+          {`${couche.liant || '-'}`}
+        </label>
+        <label
+          title={(couche.granulat && 'Oui') || ''}
+          className="labo-couche-row">
+          {`${couche.granulat || '-'}`}
+        </label>
+        <label title={couche.HAP || ''} className="labo-couche-row">
+          {`${couche.HAP || '-'}`}
+        </label>
+        <img className="labo-couche-icon" alt="goOn" src={images.arrowDown} />
+      </CardItem>
+    );
   };
 
   return (
@@ -154,76 +231,27 @@ export default function LaboDossier({ dossier, onSendCoucheForLabo }: Props) {
           <div className="labo-couche-row">LABORATOIRE</div>
           <div className="labo-couche-row">LIANT</div>
           <div className="labo-couche-row">GRANULAT</div>
+          <div className="labo-couche-row">HAP</div>
         </div>
-        {dossier.myHAP.interventions &&
-          dossier.myHAP.interventions.map(
-            (intervention: Intervention, indexIntervention) => (
-              <>
-                {intervention.prelevements &&
-                  intervention.prelevements.map(
-                    (prelevement, indexPrelevement) =>
-                      prelevement.couches &&
-                      prelevement.couches.map((couche, indexCouche) => (
-                        <CardItem
-                          onClick={() =>
-                            onSelectCouche(
-                              couche.id,
-                              prelevement.id,
-                              couche.numero!,
-                            )
-                          }
-                          key={`${indexIntervention}-${indexPrelevement}-${indexCouche}`}>
-                          <img
-                            className="labo-couche-img-checkbox"
-                            alt="checked"
-                            src={
-                              idCoucheSelected
-                                .map(el => el.coucheId)
-                                .includes(couche.id)
-                                ? images.checkBoxSelected
-                                : images.checkBoxNotSelected
-                            }
-                          />
-                          <label
-                            title={`${formatIdPrelevement(
-                              prelevement.id,
-                            )}-${couche.numero!}`}
-                            className="labo-couche-row">
-                            {`${formatIdPrelevement(
-                              prelevement.id,
-                            )}-${couche.numero!}`}
-                          </label>
-                          <label
-                            title={`${prelevement.date?.toString() || '-'}`}
-                            className="labo-couche-row">
-                            {formatDateForInput(prelevement.date) || '-'}
-                          </label>
-                          <label
-                            className="labo-couche-row"
-                            title={`${
-                              prelevement.idIntervention
-                                ? dossier.employes.find(
-                                    el => el.id === prelevement.idIntervention,
-                                  )?.name || '-'
-                                : '-'
-                            }`}>
-                            {prelevement.idIntervention
-                              ? dossier.employes.find(
-                                  el => el.id === prelevement.idIntervention,
-                                )?.name || '-'
-                              : '-'}
-                          </label>
-                          <img
-                            className="labo-couche-icon"
-                            alt="goOn"
-                            src={images.arrowDown}
-                          />
-                        </CardItem>
-                      )),
-                  )}
-              </>
-            ),
-          )}
+        {Object.entries(couchesBySendLabo).map(element => {
+          const [keyOfBonCommandeLabo, couches]: [
+            keyOfBonCommandeLabo: any,
+            couches: Couche[],
+          ] = element;
+          return keyOfBonCommandeLabo === 'notSendValue' ? (
+            couches.map((couche: Couche) => printCardItem(couche))
+          ) : (
+            <InterventionCollapse
+              onClick={() => {}}
+              title={`${formatDateForInput(
+                couches[0].sendInfoLaboAt,
+              )}: ${keyOfBonCommandeLabo}`}
+              className="intervention-container-prelevement"
+              key={keyOfBonCommandeLabo}>
+              {couches.map((couche: Couche) => printCardItem(couche, true))}
+            </InterventionCollapse>
+          );
+        })}
       </div>
       <div>
         <Button

@@ -7,7 +7,7 @@ interface Props {
   children?: React.ReactNode | JSX.Element | null;
   title?: string;
   onClick?: () => void;
-  rightIcon: ImageType;
+  rightIcon?: ImageType;
   className?: string;
 }
 export default function InterventionCollapse({
@@ -32,12 +32,14 @@ export default function InterventionCollapse({
           />
           <p className="interventionCollapse-title">{title}</p>
         </div>
-        <img
-          alt="collapse"
-          className="interventionCollapse-icon-edit"
-          src={images[rightIcon]}
-          onClick={onClick}
-        />
+        {rightIcon && (
+          <img
+            alt="collapse"
+            className="interventionCollapse-icon-edit"
+            src={images[rightIcon]}
+            onClick={onClick}
+          />
+        )}
       </div>
       <div className={`${className}`}>{isOpen && children}</div>
     </div>
